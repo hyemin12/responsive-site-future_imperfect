@@ -29,8 +29,10 @@ const MainPost = () => {
           <Author name={"JANE DOE"} src={AuthorImg} />
         </InfoWrapper>
       </TitleContainer>
+      <ImgWrapper>
+        <Img src={contentImg} alt="Jane" />
+      </ImgWrapper>
 
-      <Img src={contentImg} alt="Jane" />
       <FooterContainer>
         <Button text={"continue reading"} />
         <Row>
@@ -51,9 +53,13 @@ const Row = styled.div`
 `;
 const PostContainer = styled.div`
   background-color: #fff;
+  padding: 2.5em 2.2em;
 `;
 const TitleContainer = styled(Row)`
+  width: calc(100% + 4.4em);
+  margin-left: -2.2em;
   padding: 2.5em 2.2em;
+  padding-top: 0;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
 `;
 const TitleWrapper = styled.div`
@@ -71,21 +77,23 @@ const Date = styled.p`
   font-weight: 800;
   letter-spacing: 0.2em;
 `;
-const Img = styled.img`
-  padding: 2em 2.2em;
-  transition: 0.4s;
+const ImgWrapper = styled.div`
+  width: 100%;
+  margin: 2em 0;
+  aspect-ratio: 841/341;
   overflow: hidden;
+`;
+const Img = styled.img`
+  transition: 0.4s;
   &:hover {
-    overflow: hidden;
     transform: scale(1.1);
   }
 `;
 const FooterContainer = styled(Row)`
   align-items: center;
   justify-content: space-between;
-  padding: 2em 2.2em;
+  // padding: 2em 2.2em;
 `;
-
 const FooterItem = styled.div`
   font-size: 0.65em;
   padding: 0 2em;
