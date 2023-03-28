@@ -11,7 +11,8 @@
 - semibold - #676d79
 - light - #646464
 - point - #2ebaae rgb(46, 186, 174)
-- border - rgb(100,100,100) || rgba(160,160,160,0.3)
+- border - rgba(160,160,160,0.3)
+- icon : #aaaaaa
 
 ---
 
