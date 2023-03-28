@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 import Logo from "./Logo";
 
+const links = ["lorem", "ipsum", "feugiat", "tempus", "adipiscing"];
+
 const Header = () => {
   return (
     <HeaderContainer>
