@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import Logo from "./Logo";
+import Logo from "./Elements/Logo";
 
 import { FaSearch, FaBars } from "react-icons/fa";
+import Icon from "./Elements/Icon";
 
 const links = ["lorem", "ipsum", "feugiat", "tempus", "adipiscing"];
 
@@ -18,12 +19,13 @@ const Header = () => {
           </NavItem>
         ))}
       </NavContainer>
-      <Icon>
-        <FaSearch />
-      </Icon>
-      <Icon>
-        <FaBars />
-      </Icon>
+
+      <IconItem>
+        <Icon icon={<FaSearch />} />
+      </IconItem>
+      <IconItem>
+        <Icon icon={<FaBars />} />
+      </IconItem>
     </HeaderContainer>
   );
 };
@@ -32,6 +34,7 @@ const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   height: 50px;
+  background-color: #fff;
   padding-left: 1.2em;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
 `;
@@ -54,7 +57,7 @@ const NavItem = styled(NavLink)`
     border-right: none;
   }
 `;
-const Icon = styled.div`
+const IconItem = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,16 +65,8 @@ const Icon = styled.div`
   height: 100%;
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   border-right: 1px solid rgba(160, 160, 160, 0.3);
-  cursor: pointer;
-  transition: 0.4s;
   &:last-child {
-    border-left: none;
-  }
-  svg {
-    fill: #aaa;
-    &:hover {
-      fill: #2ebaae;
-    }
+    border: none;
   }
 `;
 export default Header;
