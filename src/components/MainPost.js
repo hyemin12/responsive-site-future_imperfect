@@ -12,8 +12,12 @@ import contentImg from "../image/pic01.jpg";
 
 import { FaHeart, FaComment } from "react-icons/fa";
 
-const MainPost = () => {
-  const [likeCount, setLikeCount] = useState();
+const MainPost = (post) => {
+  const [likeCount, setLikeCount] = useState(post.likeCount);
+
+  const { title, Subtitle, text, author, date, tag, commentCount } = post;
+  const d = new Date("2023-10-02");
+  console.log(d);
 
   return (
     <PostContainer>
@@ -36,12 +40,14 @@ const MainPost = () => {
       <FooterContainer>
         <Button text={"continue reading"} />
         <Row>
-          <Tag>태그</Tag>
+          <Tag>{tag}</Tag>
           <FooterItem>
             <Icon icon={<FaHeart />} />
+            {likeCount}
           </FooterItem>
           <FooterItem>
             <Icon icon={<FaComment />} />
+            {commentCount}
           </FooterItem>
         </Row>
       </FooterContainer>
@@ -69,6 +75,7 @@ const InfoWrapper = styled(Row)`
   align-items: end;
   flex-direction: column;
   width: 30%;
+  border-left: 1px solid rgba(160, 160, 160, 0.3);
   flex-shrink: 0;
 `;
 const Date = styled.p`
@@ -92,7 +99,6 @@ const Img = styled.img`
 const FooterContainer = styled(Row)`
   align-items: center;
   justify-content: space-between;
-  // padding: 2em 2.2em;
 `;
 const FooterItem = styled.div`
   font-size: 0.65em;

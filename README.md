@@ -31,3 +31,26 @@ import { IconName } from "react-icons/fa";
 
 - FaSearch
 - FaBars
+
+---
+
+### data
+
+post구조
+{
+id: 0,
+title: "",
+subtitle: "",
+text:'',
+athor: "",
+date: "",
+tag:'General',
+likeCount: 0,
+commentCount: 0,
+}
+
+LOREM IPSUM DOLOR AMET NULLAM CONSEQUAT ETIAM FEUGIAT
+
+General
+
+ODIO CONGUE MATTIS
