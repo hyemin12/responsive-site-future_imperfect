@@ -33,7 +33,7 @@ const Header = () => {
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  height: 50px;
+  height: 56px;
   background-color: #fff;
   padding-left: 1.2em;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);

@@ -7,24 +7,23 @@ import { data } from "../data";
 
 const Home = () => {
   // console.log(Date.now());
-  const posts = data;
+  const posts = data.sort((a, b) => (a.date < b.date ? 1 : -1));
   const limit = { main: 3, mini: 4, popular: 5 };
 
-  const mainPosts = data.slice(0, limit.main);
-  const miniPosts = data.slice(limit.main, limit.main + limit.mini);
+  const mainPosts = posts.slice(0, limit.main);
+  const miniPosts = posts.slice(limit.main, limit.main + limit.mini);
   const popularPosts = data
-    .sort((a, b) => (a.like < b.like ? 1 : -1))
+    .sort((a, b) => a.like < b.like)
     .slice(0, limit.popular);
-  // console.log(posts, mainPosts, miniPosts, popularPosts);
+  console.log(posts, mainPosts, miniPosts, popularPosts);
   return (
     <Layout>
       <Container>
-        <div id="main">
+        <Main id="main">
           {mainPosts.map((post) => (
-            <MainPost key={post.id} {...post} />
+            <MainPost key={post.id} {...post} textOverflow={true} />
           ))}
-          <MainPost />
-        </div>
+        </Main>
         <SideBar />
       </Container>
     </Layout>
@@ -33,5 +32,11 @@ const Home = () => {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: row-reverse;
+  padding: 2.5em 3em;
+  gap: 2em;
+`;
+const Main = styled.div`
+  width: 65vw;
 `;
 export default Home;
