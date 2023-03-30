@@ -29,8 +29,7 @@ const Intro = () => {
   );
 };
 const IntroContainer = styled.div`
-  padding-bottom: 3em;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  margin-bottom: 3em;
 `;
 const P = styled.p`
   display: inline;

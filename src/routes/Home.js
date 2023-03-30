@@ -11,11 +11,11 @@ const Home = () => {
   const limit = { main: 3, mini: 4, popular: 5 };
 
   const mainPosts = posts.slice(0, limit.main);
-  const miniPosts = posts.slice(limit.main, limit.main + limit.mini);
+  const cardPosts = posts.slice(limit.main, limit.main + limit.mini);
   const popularPosts = data
     .sort((a, b) => a.like < b.like)
     .slice(0, limit.popular);
-  console.log(posts, mainPosts, miniPosts, popularPosts);
+  console.log(posts, mainPosts, cardPosts, popularPosts);
   return (
     <Layout>
       <Container>
@@ -24,7 +24,7 @@ const Home = () => {
             <MainPost key={post.id} {...post} textOverflow={true} />
           ))}
         </Main>
-        <SideBar />
+        <SideBar cardPosts={cardPosts} popularPosts={popularPosts} />
       </Container>
     </Layout>
   );
@@ -37,7 +37,7 @@ const Container = styled.div`
   gap: 3.5em;
 `;
 const Main = styled.div`
-  width: 61vw;
+  width: 62vw;
   flex-shrink: 0;
 `;
 export default Home;

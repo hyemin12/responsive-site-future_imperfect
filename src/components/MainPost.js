@@ -4,15 +4,12 @@ import styled from "styled-components";
 import Title from "./Elements/Title";
 import SubTitle from "./Elements/SubTitle";
 import Author from "./Elements/Author";
-import Button from "./Elements/Button";
+import Date from "./Elements/Date";
 import Icon from "./Elements/Icon";
-
-import AuthorImg from "../image/avatar.jpg";
-import contentImg from "../image/pic01.jpg";
+import Button from "./Elements/Button";
+import TextLink from "./Elements/TextLink";
 
 import { FaHeart, FaComment } from "react-icons/fa";
-import moment from "moment/moment";
-import TextLink from "./Elements/TextLink";
 
 const MainPost = (post) => {
   const [isLike, setIsLike] = useState({
@@ -23,8 +20,10 @@ const MainPost = (post) => {
   const {
     title,
     subtitle,
+    img,
     text,
     author,
+    authorImg,
     date,
     tag,
     commentCount,
@@ -46,12 +45,13 @@ const MainPost = (post) => {
           <SubTitle text={subtitle} />
         </TitleWrapper>
         <InfoWrapper>
-          <Date>{moment(date).format("LL")}</Date>
-          <Author name={author} src={AuthorImg} />
+          <Date d={date} type={"bold"} />
+          <br />
+          <Author type={"all"} name={author} src={authorImg.type} />
         </InfoWrapper>
       </TitleContainer>
       <ImgWrapper>
-        <Img src={contentImg} alt="Jane" />
+        <Img src={img.type} alt={title} />
       </ImgWrapper>
 
       {/* 본문 */}
@@ -114,14 +114,6 @@ const InfoWrapper = styled(Row)`
   padding-right: 2.2em;
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   flex-shrink: 0;
-`;
-const Date = styled.p`
-  margin-bottom: 1em;
-  color: #3c3b3b;
-  font-size: 0.8em;
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
 `;
 const ImgWrapper = styled.div`
   width: 100%;

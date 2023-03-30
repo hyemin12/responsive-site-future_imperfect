@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Author = ({ src, name, deco }) => {
+const Author = ({ src, name, type }) => {
   return (
     <Container to="#" onClick={(e) => e.preventDefault}>
-      <AuthorName>{name}</AuthorName>
+      {type === "all" && <AuthorName>{name}</AuthorName>}
       <AuthorImage src={src} alt={`Author ${name}`} />
     </Container>
   );
