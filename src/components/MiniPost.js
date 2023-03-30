@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Date from "./Elements/Date";
-// import Img from "./Elements/Img";
 import Title from "./Elements/Title";
 
 const MiniPost = (post) => {
@@ -15,7 +14,7 @@ const MiniPost = (post) => {
       </>
       <div>
         <Title text={title} path={id} size={"0.8em"} />
-        <Date />
+        <Date d={date} />
       </div>
     </MiniPostContainer>
   );
