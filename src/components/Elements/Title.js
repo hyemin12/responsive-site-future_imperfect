@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
-const Title = ({ text, size, type, weight, lineHeight }) => {
-  if (type === "link")
+const Title = ({ text, size, type, weight, lineHeight, path }) => {
+  const location = useLocation();
+  if (type === "link" || location.pathname === "/")
     return (
-      <Link>
+      <Link to={`post/:${path}`}>
         <H1 size={size} weight={weight} lineHeight={lineHeight}>
           {text}
         </H1>

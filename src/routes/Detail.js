@@ -8,10 +8,7 @@ const Home = () => {
   return (
     <Layout>
       <Container>
-        <div id="main">
-          <MainPost />
-        </div>
-        <SideBar />
+        <div id="main">상세페이지이이이ㅣ</div>
       </Container>
     </Layout>
   );

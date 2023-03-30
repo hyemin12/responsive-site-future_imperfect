@@ -10,6 +10,8 @@ import Button from "./Elements/Button";
 import TextLink from "./Elements/TextLink";
 
 import { FaHeart, FaComment } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Img from "./Elements/Img";
 
 const MainPost = (post) => {
   const [isLike, setIsLike] = useState({
@@ -18,6 +20,7 @@ const MainPost = (post) => {
   });
 
   const {
+    id,
     title,
     subtitle,
     img,
@@ -41,7 +44,13 @@ const MainPost = (post) => {
     <PostContainer>
       <TitleContainer>
         <TitleWrapper>
-          <Title type={"link"} text={title} size={"1.6em"} weight={900} />
+          <Title
+            type={"link"}
+            text={title}
+            size={"1.6em"}
+            weight={900}
+            path={id}
+          />
           <SubTitle text={subtitle} />
         </TitleWrapper>
         <InfoWrapper>
@@ -51,7 +60,7 @@ const MainPost = (post) => {
         </InfoWrapper>
       </TitleContainer>
       <ImgWrapper>
-        <Img src={img.type} alt={title} />
+        <Img src={img.type} alt={title} path={id} />
       </ImgWrapper>
 
       {/* 본문 */}
@@ -116,16 +125,11 @@ const InfoWrapper = styled(Row)`
   flex-shrink: 0;
 `;
 const ImgWrapper = styled.div`
+  display: flex;
   width: 100%;
   margin: 3em 0;
   aspect-ratio: 841/341;
   overflow: hidden;
-`;
-const Img = styled.img`
-  transition: 0.4s;
-  &:hover {
-    transform: scale(1.1);
-  }
 `;
 const TextWrapper = styled.div`
   width: 100%;
