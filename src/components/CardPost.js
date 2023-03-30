@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Author from "./Elements/Author";
-import Date from "./Elements/Date";
-import Img from "./Elements/Img";
-import Title from "./Elements/Title";
 
-const CardPosts = (post) => {
+import Title from "./Elements/Title";
+import Author from "./Elements/Author";
+import Img from "./Elements/Img";
+import Date from "./Elements/Date";
+
+const CardPost = (post) => {
   console.log(post);
-  const { id, title, subtitle, author, authorImg, img, date } = post;
+  const { id, title, authorImg, img, date } = post;
   return (
     <CardPostContainer>
       <CardTop>
@@ -44,4 +44,4 @@ const CardBottom = styled.div`
   padding-bottom: 1.9em;
   background-color: #fff;
 `;
-export default CardPosts;
+export default CardPost;

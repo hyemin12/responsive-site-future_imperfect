@@ -1,6 +1,8 @@
-import Intro from "./Intro";
-import MiniPost from "./CardPosts";
 import styled from "styled-components";
+
+import Intro from "./Intro";
+import CardPost from "./CardPost";
+import MiniPost from "./MiniPost";
 
 const SideBar = ({ cardPosts, popularPosts }) => {
   return (
@@ -8,9 +10,13 @@ const SideBar = ({ cardPosts, popularPosts }) => {
       <Intro />
       <CardPostContainer>
         {cardPosts.map((post) => (
-          <MiniPost key={post.id} {...post} />
+          <CardPost key={post.id} {...post} />
         ))}
       </CardPostContainer>
+      <h4>Popular Posts</h4>
+      {popularPosts.map((post) => (
+        <MiniPost key={post.id} {...post} />
+      ))}
     </div>
   );
 };
