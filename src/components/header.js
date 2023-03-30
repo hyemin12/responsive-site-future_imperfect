@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import Logo from "./Elements/Logo";
@@ -11,7 +11,9 @@ const links = ["lorem", "ipsum", "feugiat", "tempus", "adipiscing"];
 const Header = () => {
   return (
     <HeaderContainer>
-      <Logo />
+      <Link to="/">
+        <H4>Future imperfect</H4>
+      </Link>
       <NavContainer>
         {links.map((link) => (
           <NavItem to="#" onClick={(e) => e.preventDefault} key={link}>
@@ -37,6 +39,12 @@ const HeaderContainer = styled.div`
   background-color: #fff;
   padding-left: 1.2em;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+`;
+const H4 = styled.h4`
+  color: #3c3b3b;
+  font-size: 0.7em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 `;
 const NavContainer = styled.div`
   flex-grow: 1;

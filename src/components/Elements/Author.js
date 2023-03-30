@@ -11,6 +11,7 @@ const Author = ({ src, name, deco }) => {
 };
 const Container = styled(Link)`
   display: flex;
+  align-items: center;
   gap: 10px;
 `;
 const AuthorName = styled.p`
@@ -22,6 +23,7 @@ const AuthorName = styled.p`
   text-underline-offset: 5px;
   transition: 0.4s;
   &:hover {
+    color: #2ebaae;
     text-decoration: none;
   }
 `;

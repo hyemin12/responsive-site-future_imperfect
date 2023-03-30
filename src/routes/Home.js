@@ -33,10 +33,11 @@ const Home = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: row-reverse;
-  padding: 2.5em 3em;
-  gap: 2em;
+  padding: 3.5em 5em;
+  gap: 3.5em;
 `;
 const Main = styled.div`
-  width: 65vw;
+  width: 61vw;
+  flex-shrink: 0;
 `;
 export default Home;

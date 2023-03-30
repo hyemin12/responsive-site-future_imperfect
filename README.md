@@ -49,8 +49,6 @@ likeCount: 0,
 commentCount: 0,
 }
 
-LOREM IPSUM DOLOR AMET NULLAM CONSEQUAT ETIAM FEUGIAT
+### 로고 이미지 (육각형)
 
-General
-
-ODIO CONGUE MATTIS
+https://codepen.io/izer/pen/RYvevG

@@ -1,4 +1,10 @@
+import Intro from "./Intro";
+
 const SideBar = () => {
-  return <div>사이드바</div>;
+  return (
+    <div>
+      <Intro />
+    </div>
+  );
 };
 export default SideBar;

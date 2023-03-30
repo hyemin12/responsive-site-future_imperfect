@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import LogoImg from "../../image/logo.jpg";
+
 const Logo = () => {
   return (
-    <Link to="/">
-      <H4>Future imperfect</H4>
-    </Link>
+    <LogoShape>
+      <img src={LogoImg} alt="Future imperfect" />
+    </LogoShape>
   );
 };
-
-const H4 = styled.h4`
-  color: #3c3b3b;
-  font-size: 0.7em;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+const LogoShape = styled.div`
+display: flex;
+position: relative;
+width: 65px;
+height: 70px;
+-webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+ 
 `;
+
 export default Logo;

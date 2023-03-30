@@ -12,6 +12,7 @@ import contentImg from "../image/pic01.jpg";
 
 import { FaHeart, FaComment } from "react-icons/fa";
 import moment from "moment/moment";
+import TextLink from "./Elements/TextLink";
 
 const MainPost = (post) => {
   const [isLike, setIsLike] = useState({
@@ -41,7 +42,7 @@ const MainPost = (post) => {
     <PostContainer>
       <TitleContainer>
         <TitleWrapper>
-          <Title type={"link"} text={title} size={"1.5em"} />
+          <Title type={"link"} text={title} size={"1.6em"} weight={900} />
           <SubTitle text={subtitle} />
         </TitleWrapper>
         <InfoWrapper>
@@ -53,15 +54,21 @@ const MainPost = (post) => {
         <Img src={contentImg} alt="Jane" />
       </ImgWrapper>
 
+      {/* 본문 */}
       <TextWrapper textOverflow={textOverflow}>
-        {text.split("\n").map((par, idx) => (
-          <p key={idx}>{par}</p>
-        ))}
+        <p>{text.split("\n")[0]}</p>
       </TextWrapper>
+
       <FooterContainer>
         <Button text={"continue reading"} />
         <Row>
-          <Tag>{tag}</Tag>
+          <TextLink
+            text={tag}
+            path="#"
+            type="link"
+            size={"0.65em"}
+            padding={"0 2em"}
+          />
           <FooterItem
             className={isLike.mode ? "active" : ""}
             onClick={toggleLikeMode}
@@ -83,19 +90,21 @@ const Row = styled.div`
 `;
 const PostContainer = styled.div`
   background-color: #fff;
-  padding: 2.5em 2.2em;
+  padding: 3em 3em;
   margin-bottom: 2.2em;
+  border: 1px solid rgba(160, 160, 160, 0.3);
 `;
 const TitleContainer = styled(Row)`
   width: calc(100% + 4.4em);
-  margin-top: -2.5em;
-  margin-left: -2.2em;
+  margin-top: -3em;
+  margin-left: -3em;
+  margin-bottom: 1em;
   padding-top: 0;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
 `;
 const TitleWrapper = styled.div`
   flex-grow: 1;
-  padding: 2.5em 2.2em;
+  padding: 3em 3em;
 `;
 const InfoWrapper = styled(Row)`
   align-items: end;
@@ -107,6 +116,7 @@ const InfoWrapper = styled(Row)`
   flex-shrink: 0;
 `;
 const Date = styled.p`
+  margin-bottom: 1em;
   color: #3c3b3b;
   font-size: 0.8em;
   font-weight: 800;
@@ -115,7 +125,7 @@ const Date = styled.p`
 `;
 const ImgWrapper = styled.div`
   width: 100%;
-  margin: 2em 0;
+  margin: 3em 0;
   aspect-ratio: 841/341;
   overflow: hidden;
 `;
@@ -145,11 +155,8 @@ const FooterItem = styled(Row)`
   gap: 10px;
   font-size: 0.65em;
   padding: 0 2em;
-  border-right: 1px solid rgba(160, 160, 160, 0.3);
+  border-left: 1px solid rgba(160, 160, 160, 0.3);
   cursor: pointer;
-  &:last-child {
-    border: none;
-  }
   &:hover,
   &:hover svg {
     color: #2ebaae;
@@ -159,17 +166,6 @@ const FooterItem = styled(Row)`
   &.active svg {
     color: #2ebaae;
     fill: #2ebaae;
-  }
-`;
-const Tag = styled(FooterItem)`
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: underline dotted #aaa;
-  text-underline-offset: 5px;
-  cursor: pointer;
-  transition: 0.4s;
-  &:hover {
-    text-decoration: none;
   }
 `;
 
