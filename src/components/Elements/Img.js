@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Img = ({ src, path, alt }) => {
   const location = useLocation();
-  console.log(location);
   if (location.pathname === "/")
     return (
       <LinkWrapper to={`post/:${path}`} style={{ display: "block" }}>

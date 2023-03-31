@@ -1,7 +1,12 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = ({ text }) => {
-  return <Btn>{text}</Btn>;
+const Button = ({ text, path }) => {
+  return (
+    <Link to={path ? `post/:${path}` : "#"}>
+      <Btn>{text}</Btn>
+    </Link>
+  );
 };
 const Btn = styled.button`
   background-color: transparent;

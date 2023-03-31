@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import Date from "./Elements/Date";
 import Title from "./Elements/Title";
 
@@ -13,17 +14,21 @@ const MiniPost = (post) => {
         </ImgWrapper>
       </>
       <div>
-        <Title text={title} path={id} size={"0.8em"} />
+        <Title text={title} path={id} size={"0.8em"} short={2} />
         <Date d={date} />
       </div>
     </MiniPostContainer>
   );
 };
-const MiniPostContainer = styled.div`
+const MiniPostContainer = styled.article`
   display: flex;
   gap: 2em;
   padding: 1.2em 0;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 `;
 const ImgWrapper = styled(Link)`
   display: flex;
@@ -42,4 +47,5 @@ const Img = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
 export default MiniPost;

@@ -2,7 +2,6 @@ import moment from "moment";
 import styled from "styled-components";
 
 const Date = ({ d, type }) => {
-  console.log(d, type);
   return <P type={type}>{moment(d).format("LL")}</P>;
 };
 

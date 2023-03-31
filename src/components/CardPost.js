@@ -6,7 +6,6 @@ import Img from "./Elements/Img";
 import Date from "./Elements/Date";
 
 const CardPost = (post) => {
-  console.log(post);
   const { id, title, authorImg, img, date } = post;
   return (
     <CardPostContainer>

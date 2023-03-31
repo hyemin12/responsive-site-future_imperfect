@@ -69,7 +69,7 @@ const MainPost = (post) => {
       </TextWrapper>
 
       <FooterContainer>
-        <Button text={"continue reading"} />
+        <Button text={"continue reading"} path={id} />
         <Row>
           <TextLink
             text={tag}
@@ -97,7 +97,7 @@ const MainPost = (post) => {
 const Row = styled.div`
   display: flex;
 `;
-const PostContainer = styled.div`
+const PostContainer = styled.article`
   background-color: #fff;
   padding: 3em 3em;
   margin-bottom: 2.2em;
@@ -134,6 +134,7 @@ const ImgWrapper = styled.div`
 const TextWrapper = styled.div`
   width: 100%;
   margin-bottom: 2.4em;
+  line-height: 1.8;
   font-family: "Source Sans Pro", "sans-serif";
   ${({ textOverflow }) =>
     textOverflow &&
