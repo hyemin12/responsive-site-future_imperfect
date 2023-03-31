@@ -52,3 +52,9 @@ commentCount: 0,
 ### 로고 이미지 (육각형)
 
 https://codepen.io/izer/pen/RYvevG
+
+### breakpoint
+
+- tablet : 1023px
+- tablet(세로) : 771px
+- mobile : 358px
