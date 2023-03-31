@@ -55,6 +55,7 @@ https://codepen.io/izer/pen/RYvevG
 
 ### breakpoint
 
+- desktop: 1024px
 - tablet : 1023px
 - tablet(세로) : 771px
 - mobile : 358px

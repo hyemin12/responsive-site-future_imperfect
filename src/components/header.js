@@ -35,10 +35,13 @@ const Header = () => {
 const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
   height: 56px;
   background-color: #fff;
   padding-left: 1.2em;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  position: fixed;
+  z-index: 10;
 `;
 const H4 = styled.h4`
   color: #3c3b3b;
