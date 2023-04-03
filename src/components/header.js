@@ -1,8 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import Logo from "./Elements/Logo";
-
 import { FaSearch, FaBars } from "react-icons/fa";
 import Icon from "./Elements/Icon";
 
@@ -41,7 +39,7 @@ const HeaderContainer = styled.div`
   padding-left: 1.2em;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
   position: fixed;
-  z-index: 10;
+  z-index: 9;
 `;
 const H4 = styled.h4`
   color: #3c3b3b;

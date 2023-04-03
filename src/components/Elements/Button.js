@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = ({ text, path }) => {
+const Button = ({ text, path, width }) => {
   return (
     <Link to={path ? `post/:${path}` : "#"}>
-      <Btn>{text}</Btn>
+      <Btn width={width}>{text}</Btn>
     </Link>
   );
 };
 const Btn = styled.button`
+  ${({ width }) => width && `width:${width}`};
   background-color: transparent;
   padding: 1.8em 2.1em;
   border: 1px solid rgba(160, 160, 160, 0.3);
