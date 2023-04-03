@@ -11,8 +11,12 @@ import TextLink from "./Elements/TextLink";
 import Img from "./Elements/Img";
 
 import { FaHeart, FaComment } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const MainPost = (post) => {
+  const location = useLocation();
+  const isMainPage = location.pathname === "/";
+  console.log(isMainPage);
   const [isLike, setIsLike] = useState({
     likeCount: post.likeCount,
     mode: false,
@@ -62,19 +66,30 @@ const MainPost = (post) => {
       </ImgWrapper>
 
       {/* 본문 */}
+
       <TextWrapper textOverflow={textOverflow}>
-        <p>{text.split("\n")[0]}</p>
+        {isMainPage ? (
+          <p>{text.split("\n")[0]}</p>
+        ) : (
+          text.split("\n").map((param, idx) => (
+            <>
+              <p key={idx}>{param}</p>
+              {idx !== text.split("\n").length - 1 ? <br /> : null}
+            </>
+          ))
+        )}
       </TextWrapper>
 
       <FooterContainer>
-        <Button text={"continue reading"} path={id} />
+        {isMainPage && <Button text={"continue reading"} path={id} />}
+
         <Row>
           <TextLink
             text={tag}
             path="#"
             type="link"
             size={"0.65em"}
-            padding={"0 2em"}
+            padding={"0 2em 0 0"}
           />
           <FooterItem
             className={isLike.mode ? "active" : ""}

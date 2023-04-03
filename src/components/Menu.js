@@ -11,11 +11,8 @@ import { useRef } from "react";
 const Menu = () => {
   const location = useLocation();
   const newPosts = data.slice(0, 4);
-  const outside = useRef();
   const { setIsOpenMenu } = useMenuContext();
-  const closeModal = () => {
-    // if (outside.current) setIsOpenMenu(false);
-  };
+
   return (
     <Container onClick={() => setIsOpenMenu(false)}>
       <MenuContainer>
@@ -26,9 +23,7 @@ const Menu = () => {
           {newPosts.map(({ id, title, subtitle }) => (
             <LinkWrapper
               key={id}
-              to={
-                location.pathname === "/" ? `./post/:${id}` : `../post/:${id}`
-              }
+              to={location.pathname === "/" ? `./post/${id}` : `../post/${id}`}
             >
               <Title>{title}</Title>
               <SubTitle>{subtitle}</SubTitle>

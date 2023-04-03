@@ -27,8 +27,8 @@ const TextLink = ({ text, type, path, size, padding }) => {
 };
 
 export const LinkText = styled(Link)`
-  ${({ padding }) => padding && `padding: ${padding}`};
-  padding: 0 2em;
+  display: block;
+  ${({ padding }) => (padding ? `padding: ${padding}` : "0 2em")};
   color: #646464;
   font-size: ${({ size }) => (size ? size : "0.7em")};
   letter-spacing: 0.2em;

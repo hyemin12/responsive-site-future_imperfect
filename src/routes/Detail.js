@@ -1,20 +1,31 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Layout from "../components/Layout";
 import MainPost from "../components/MainPost";
 import SideBar from "../components/SideBar";
 
-const Home = () => {
+import { data } from "../data";
+
+const Detail = () => {
+  const { id } = useParams();
+  const post = data.filter((element) => element.id === id * 1)[0];
+  console.log(id, data, post, typeof id);
+
   return (
     <Layout>
-      <Container>
-        <div id="main">상세페이지이이이ㅣ</div>
-      </Container>
+      {post && (
+        <Container>
+          <MainPost {...post} />
+        </Container>
+      )}
     </Layout>
   );
 };
 
 const Container = styled.div`
-  display: flex;
+  // width: 90vw;
+  padding: 3.5em 5em;
 `;
-export default Home;
+const PostWrapper = styled.div``;
+export default Detail;
