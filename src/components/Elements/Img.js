@@ -5,7 +5,7 @@ const Img = ({ src, path, alt }) => {
   const location = useLocation();
   if (location.pathname === "/")
     return (
-      <LinkWrapper to={`post/:${path}`} style={{ display: "block" }}>
+      <LinkWrapper to={`./post/:${path}`} style={{ display: "block" }}>
         <ImgTag src={src} alt={alt} />
       </LinkWrapper>
     );

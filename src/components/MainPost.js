@@ -8,10 +8,9 @@ import Date from "./Elements/Date";
 import Icon from "./Elements/Icon";
 import Button from "./Elements/Button";
 import TextLink from "./Elements/TextLink";
+import Img from "./Elements/Img";
 
 import { FaHeart, FaComment } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import Img from "./Elements/Img";
 
 const MainPost = (post) => {
   const [isLike, setIsLike] = useState({
@@ -55,7 +54,6 @@ const MainPost = (post) => {
         </TitleWrapper>
         <InfoWrapper>
           <Date d={date} type={"bold"} />
-          <br />
           <Author type={"all"} name={author} src={authorImg.type} />
         </InfoWrapper>
       </TitleContainer>
@@ -99,13 +97,13 @@ const Row = styled.div`
 `;
 const PostContainer = styled.article`
   background-color: #fff;
-  padding: 3em 3em;
+  padding: 3.6em 3em;
   margin-bottom: 2.2em;
   border: 1px solid rgba(160, 160, 160, 0.3);
 `;
 const TitleContainer = styled(Row)`
-  width: calc(100% + 4.4em);
-  margin-top: -3em;
+  width: calc(100% + 6em);
+  margin-top: -3.6em;
   margin-left: -3em;
   margin-bottom: 1em;
   padding-top: 0;
@@ -113,14 +111,15 @@ const TitleContainer = styled(Row)`
 `;
 const TitleWrapper = styled.div`
   flex-grow: 1;
-  padding: 3em 3em;
+  padding: 3.6em 3em;
 `;
 const InfoWrapper = styled(Row)`
   align-items: end;
   justify-content: center;
   flex-direction: column;
+  gap: 0.67em;
   width: 30%;
-  padding-right: 2.2em;
+  padding-right: 3em;
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   flex-shrink: 0;
 `;

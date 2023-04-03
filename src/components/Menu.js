@@ -1,15 +1,40 @@
 import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
+
 import Button from "./Elements/Button";
 import SearchInput from "./Elements/SearchInput";
 
+import { data } from "../data";
+import { useMenuContext } from "../hooks/menu_context";
+import { useRef } from "react";
+
 const Menu = () => {
+  const location = useLocation();
+  const newPosts = data.slice(0, 4);
+  const outside = useRef();
+  const { setIsOpenMenu } = useMenuContext();
+  const closeModal = () => {
+    // if (outside.current) setIsOpenMenu(false);
+  };
   return (
-    <Container>
+    <Container onClick={() => setIsOpenMenu(false)}>
       <MenuContainer>
         <Section>
           <SearchInput />
         </Section>
-        <Section></Section>
+        <Section>
+          {newPosts.map(({ id, title, subtitle }) => (
+            <LinkWrapper
+              key={id}
+              to={
+                location.pathname === "/" ? `./post/:${id}` : `../post/:${id}`
+              }
+            >
+              <Title>{title}</Title>
+              <SubTitle>{subtitle}</SubTitle>
+            </LinkWrapper>
+          ))}
+        </Section>
         <Section>
           <Button text={"log in"} width={"100%"} />
         </Section>
@@ -40,6 +65,45 @@ const Section = styled.div`
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
   &:last-child {
     border: none;
+  }
+`;
+
+const Title = styled.h4`
+  margin-bottom: 1em;
+  color: #3c3b3b;
+  font-size: 0.7em;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  letter-spacing: 0.2em;
+  transition: 0.4s;
+`;
+const SubTitle = styled.p`
+  color: #646464;
+  font-size: 0.65em;
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  letter-spacing: 0.2em;
+  transition: 0.4s;
+`;
+const LinkWrapper = styled(Link)`
+  display: block;
+  padding: 2em 0;
+  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  &:first-child {
+    padding-top: 0;
+  }
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  &:hover h4,
+  &:hover p {
+    color: #2ebaae !important;
   }
 `;
 export default Menu;

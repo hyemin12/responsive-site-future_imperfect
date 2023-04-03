@@ -8,7 +8,7 @@ const Intro = () => {
   return (
     <IntroContainer>
       <Logo />
-
+      <br />
       <Title
         text={"FUTURE IMPERFECT"}
         size={"2em"}

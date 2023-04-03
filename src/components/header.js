@@ -1,12 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { FaSearch, FaBars } from "react-icons/fa";
+import { useMenuContext } from "../hooks/menu_context";
+
 import Icon from "./Elements/Icon";
+
+import { FaSearch, FaBars } from "react-icons/fa";
 
 const links = ["lorem", "ipsum", "feugiat", "tempus", "adipiscing"];
 
 const Header = () => {
+  const { setIsOpenMenu } = useMenuContext();
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -23,7 +28,7 @@ const Header = () => {
       <IconItem>
         <Icon icon={<FaSearch />} />
       </IconItem>
-      <IconItem>
+      <IconItem onClick={() => setIsOpenMenu(true)}>
         <Icon icon={<FaBars />} />
       </IconItem>
     </HeaderContainer>

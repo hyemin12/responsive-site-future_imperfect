@@ -9,7 +9,7 @@ const MiniPost = (post) => {
   return (
     <MiniPostContainer>
       <>
-        <ImgWrapper to={`post/:${id}`}>
+        <ImgWrapper to={`./post/:${id}`}>
           <Img src={img.type} alt={title} />
         </ImgWrapper>
       </>
