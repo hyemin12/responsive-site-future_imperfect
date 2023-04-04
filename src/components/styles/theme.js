@@ -11,8 +11,13 @@ const device = {
   tabletPortrait: `screen and (max-width:${breakpoint.tabletPortrait}px)`,
   mobile: `screen and (max-width:${breakpoint.mobile}px)`,
 };
+
+const common = {
+  border: "1px solid rgba(160,160,160,0.3)",
+  pointColor: "#2ebaae",
+};
 const theme = {
   device,
+  common,
 };
 export default theme;
-// ThemeProvider
