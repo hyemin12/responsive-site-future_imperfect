@@ -7,8 +7,6 @@ import { data } from "../data";
 import theme from "../components/styles/theme";
 
 const Home = () => {
-  const t = theme;
-  console.log(t);
   const posts = data.sort((a, b) => (a.date < b.date ? 1 : -1));
   const limit = { main: 3, mini: 4, popular: 5 };
 

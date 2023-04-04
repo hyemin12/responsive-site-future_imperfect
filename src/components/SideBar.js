@@ -5,11 +5,15 @@ import CardPost from "./CardPost";
 import MiniPost from "./MiniPost";
 import About from "./About";
 import Footer from "./Footer";
+import theme from "./styles/theme";
 
 const SideBar = ({ cardPosts, popularPosts }) => {
   return (
     <div>
-      <Intro />
+      <IntroWrapper size={theme}>
+        <Intro />
+      </IntroWrapper>
+
       <SectionWrapper>
         {cardPosts.map((post) => (
           <CardPost key={post.id} {...post} />
@@ -42,5 +46,10 @@ const SectionWrapper = styled.div`
 `;
 const SectionTitle = styled.h4`
   margin-top: 0;
+`;
+const IntroWrapper = styled.div`
+  @media ${({ size }) => size.tablet} {
+    display: none;
+  }
 `;
 export default SideBar;

@@ -2,11 +2,11 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Layout from "../components/Layout";
+import Footer from "../components/Footer";
 import MainPost from "../components/MainPost";
-import SideBar from "../components/SideBar";
 
 import { data } from "../data";
-import Footer from "../components/Footer";
+import theme from "../components/styles/theme";
 
 const Detail = () => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ const Detail = () => {
   return (
     <Layout>
       {post && (
-        <Container>
+        <Container size={theme.device}>
           <MainPost {...post} />
         </Container>
       )}
@@ -27,6 +27,13 @@ const Detail = () => {
 
 const Container = styled.div`
   padding: 3.5em 5em;
+
+  @media ${({ size }) => size.tablet} {
+    padding: 3.5em;
+  }
+  @media ${({ size }) => size.tabletPortrait} {
+    padding: 3.5em 0;
+  }
 `;
 
 export default Detail;

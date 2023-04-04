@@ -12,6 +12,7 @@ import Img from "./Elements/Img";
 
 import { FaHeart, FaComment } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
+import theme from "./styles/theme";
 
 const MainPost = (post) => {
   const location = useLocation();
@@ -45,10 +46,10 @@ const MainPost = (post) => {
 
   return (
     <PostContainer>
-      <TitleContainer>
-        <TitleWrapper>
+      <TitleContainer size={theme}>
+        <TitleWrapper size={theme}>
           <Title
-            type={"link"}
+            type={isMainPage ? "link" : "default"}
             text={title}
             size={"1.6em"}
             weight={900}
@@ -58,7 +59,7 @@ const MainPost = (post) => {
         </TitleWrapper>
 
         {/* 날짜, 작가 */}
-        <InfoWrapper>
+        <InfoWrapper size={theme}>
           <Date d={date} type={"bold"} />
           <Author type={"all"} name={author} src={authorImg.type} />
         </InfoWrapper>
@@ -131,10 +132,19 @@ const TitleContainer = styled(Row)`
   margin-bottom: 1em;
   padding-top: 0;
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  @media ${({ size }) => size.tabletPortrait} {
+    display: block;
+    text-align: center;
+    padding: 3.6em 3em;
+  }
 `;
 const TitleWrapper = styled.div`
   flex-grow: 1;
   padding: 3.6em 3em;
+  @media ${({ size }) => size.tabletPortrait} {
+    padding: 0;
+    margin-bottom: 2.4em;
+  }
 `;
 const InfoWrapper = styled(Row)`
   align-items: end;
@@ -144,6 +154,11 @@ const InfoWrapper = styled(Row)`
   padding: 3.6em 3em;
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   flex-shrink: 0;
+  @media ${({ size }) => size.tabletPortrait} {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+  }
 `;
 const ImgWrapper = styled.div`
   display: flex;
