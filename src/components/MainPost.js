@@ -111,6 +111,7 @@ const Row = styled.div`
   display: flex;
 `;
 const PostContainer = styled.article`
+  max-width: 1500px;
   background-color: #fff;
   padding: 3.6em 3em;
   margin-bottom: 2.2em;
