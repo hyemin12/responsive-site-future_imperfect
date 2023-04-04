@@ -24,21 +24,28 @@ const Footer = () => {
     <FooterContainer isMainPage={isMainPage}>
       <SocialContainer isMainPage={isMainPage}>
         {socials.map(({ link, icon }) => (
-          <a href={link} target="_blank" rel="noreferrer" key={link}>
+          <a
+            href={link}
+            target="_blank"
+            rel="noreferrer"
+            key={link}
+            style={{ width: "auto" }}
+          >
             <Icon icon={icon} />
           </a>
         ))}
       </SocialContainer>
       <Copyright>
         © UNTITLED. DESIGN:
-        <TextLink text={"HTML5 UP"} path={"http://html5up.net/"} />. IMAGES:
-        <TextLink text={"UNSPLASH"} path={"http://unsplash.com/"} />.
+        <TextLink offset={0} text={"HTML5 UP"} path={"http://html5up.net/"} />.
+        IMAGES:
+        <TextLink offset={0} text={"UNSPLASH"} path={"http://unsplash.com/"} />.
       </Copyright>
     </FooterContainer>
   );
 };
 
-// 메인페이지 일 경우 가운데 정렬
+// 메인페이지 아닐 경우 가운데 정렬
 const FooterContainer = styled.footer`
   ${({ isMainPage }) =>
     !isMainPage &&
@@ -51,7 +58,7 @@ const SocialContainer = styled.div`
   display: flex;
   gap: 1em;
   margin-bottom: 2em;
-  ${({ isMainPage }) => !isMainPage && `justify-content: center`};
+  // ${({ isMainPage }) => !isMainPage && `justify-content: center`};
 `;
 const Copyright = styled.p`
   font-size: 0.6em;

@@ -14,7 +14,7 @@ const Img = ({ src, path, alt }) => {
 };
 const LinkWrapper = styled(Link)`
   flex-grow: 1;
-  display: "block";
+  display: block;
 `;
 const ImgTag = styled.img`
   width: 100%;

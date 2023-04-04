@@ -45,9 +45,9 @@ const MainPost = (post) => {
   };
 
   return (
-    <PostContainer>
-      <TitleContainer size={theme}>
-        <TitleWrapper size={theme}>
+    <PostContainer size={theme.device}>
+      <TitleContainer size={theme.device}>
+        <TitleWrapper size={theme.device}>
           <Title
             type={isMainPage ? "link" : "default"}
             text={title}
@@ -59,12 +59,17 @@ const MainPost = (post) => {
         </TitleWrapper>
 
         {/* 날짜, 작가 */}
-        <InfoWrapper size={theme}>
+        <InfoWrapper size={theme.device}>
           <Date d={date} type={"bold"} />
-          <Author type={"all"} name={author} src={authorImg.type} />
+          <Author
+            type={"all"}
+            name={author}
+            src={authorImg.type}
+            border={"left"}
+          />
         </InfoWrapper>
       </TitleContainer>
-      <ImgWrapper>
+      <ImgWrapper size={theme.device}>
         <Img src={img.type} alt={title} path={id} />
       </ImgWrapper>
 
@@ -85,16 +90,16 @@ const MainPost = (post) => {
         )}
       </TextWrapper>
 
-      <FooterContainer>
+      <FooterContainer size={theme.device}>
         {isMainPage && <Button text={"continue reading"} path={id} />}
-
-        <Row>
+        <FooterRow size={theme.device}>
           <TextLink
             text={tag}
             path="#"
             type="link"
             size={"0.65em"}
             padding={"0 2em 0 0"}
+            offset={3}
           />
           <FooterItem
             className={isLike.mode ? "active" : ""}
@@ -107,7 +112,7 @@ const MainPost = (post) => {
             <Icon icon={<FaComment />} />
             <p>{commentCount}</p>
           </FooterItem>
-        </Row>
+        </FooterRow>
       </FooterContainer>
     </PostContainer>
   );
@@ -121,10 +126,16 @@ const PostContainer = styled.article`
   padding: 3.6em 3em;
   margin-bottom: 2.2em;
   border: 1px solid rgba(160, 160, 160, 0.3);
+  overflow-x: hidden;
   &:last-child {
     margin-bottom: 0;
   }
+  @media ${({ size }) => size.tabletPortrait} {
+    width: calc(100% + 7em);
+    margin-left: -3.5em;
+  }
 `;
+
 const TitleContainer = styled(Row)`
   width: calc(100% + 6em);
   margin-top: -3.6em;
@@ -134,10 +145,12 @@ const TitleContainer = styled(Row)`
   border-bottom: 1px solid rgba(160, 160, 160, 0.3);
   @media ${({ size }) => size.tabletPortrait} {
     display: block;
-    text-align: center;
+    margin-bottom: 0;
     padding: 3.6em 3em;
+    text-align: center;
   }
 `;
+
 const TitleWrapper = styled.div`
   flex-grow: 1;
   padding: 3.6em 3em;
@@ -154,8 +167,17 @@ const InfoWrapper = styled(Row)`
   padding: 3.6em 3em;
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   flex-shrink: 0;
+
+  // table 세로 스타일
   @media ${({ size }) => size.tabletPortrait} {
     flex-direction: row;
+    align-items: center;
+    padding: 0;
+    border-left: none;
+  }
+  // 모바일스타일
+  @media ${({ size }) => size.mobile} {
+    flex-direction: column;
     align-items: center;
     padding: 0;
   }
@@ -166,6 +188,12 @@ const ImgWrapper = styled.div`
   margin: 3em 0;
   aspect-ratio: 841/341;
   overflow: hidden;
+  @media ${({ size }) => size.mobile} {
+    width: calc(100% + 7em);
+    margin-top: 0;
+    margin-bottom: 2em;
+    margin-left: -3.5em;
+  }
 `;
 const TextWrapper = styled.div`
   width: 100%;
@@ -182,6 +210,14 @@ const TextWrapper = styled.div`
 const FooterContainer = styled(Row)`
   align-items: center;
   justify-content: space-between;
+  @media ${({ size }) => size.mobile} {
+    flex-direction: column-reverse;
+  }
+`;
+const FooterRow = styled(Row)`
+  @media ${({ size }) => size.mobile} {
+    margin-bottom: 2em;
+  }
 `;
 const FooterItem = styled(Row)`
   align-items: center;

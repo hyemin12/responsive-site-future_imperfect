@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Title = ({ text, size, type, weight, lineHeight, path, short }) => {
   const location = useLocation();
-  console.log(location);
+
   if (type === "link" || location.pathname === "/")
     return (
       <Link to={`./post/${path}`}>

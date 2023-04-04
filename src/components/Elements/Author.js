@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../styles/theme";
 
-const Author = ({ src, name, type }) => {
+const Author = ({ src, name, type, border }) => {
   return (
-    <Container to="#" onClick={(e) => e.preventDefault} size={theme.device}>
-      {type === "all" && <AuthorName>{name}</AuthorName>}
+    <Container
+      to="#"
+      onClick={(e) => e.preventDefault}
+      size={theme.device}
+      border={border}
+    >
+      {type === "all" && <AuthorName size={theme.device}>{name}</AuthorName>}
       <AuthorImage src={src} alt={`Author ${name}`} />
     </Container>
   );
@@ -15,9 +20,15 @@ const Container = styled(Link)`
   align-items: center;
   gap: 10px;
   @media ${({ size }) => size.tabletPortrait} {
-    flex-direction: row-reverse;
+    ${({ border }) =>
+      border === "left" &&
+      `flex-direction: row-reverse;
     padding-left: 1.2em;
-    border-left: 1px solid rgba(160, 160, 160, 0.3);
+    border-left: 1px solid rgba(160, 160, 160, 0.3);`}
+  }
+  @media ${({ size }) => size.mobile} {
+    display: block;
+    border-left: none;
   }
 `;
 const AuthorName = styled.p`
@@ -31,6 +42,9 @@ const AuthorName = styled.p`
   &:hover {
     color: #2ebaae;
     text-decoration: none;
+  }
+  @media ${({ size }) => size.mobile} {
+    display: none;
   }
 `;
 

@@ -1,8 +1,8 @@
 const breakpoint = {
-  desktop: 1024,
-  tablet: 1023,
-  tabletPortrait: 771,
-  mobile: 358,
+  desktop: 1281,
+  tablet: 1280,
+  tabletPortrait: 980,
+  mobile: 575,
 };
 
 const device = {

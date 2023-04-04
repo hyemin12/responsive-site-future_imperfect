@@ -10,15 +10,16 @@ import theme from "./styles/theme";
 const SideBar = ({ cardPosts, popularPosts }) => {
   return (
     <div>
-      <IntroWrapper size={theme}>
+      <IntroWrapper size={theme.device}>
         <Intro />
       </IntroWrapper>
 
-      <SectionWrapper>
+      <CardPostWrapper size={theme.device}>
         {cardPosts.map((post) => (
           <CardPost key={post.id} {...post} />
         ))}
-      </SectionWrapper>
+      </CardPostWrapper>
+
       <SectionWrapper>
         <SectionTitle>Popular Posts</SectionTitle>
         {popularPosts.map((post) => (
@@ -46,10 +47,22 @@ const SectionWrapper = styled.div`
 `;
 const SectionTitle = styled.h4`
   margin-top: 0;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 `;
 const IntroWrapper = styled.div`
   @media ${({ size }) => size.tablet} {
     display: none;
+  }
+`;
+const CardPostWrapper = styled(SectionWrapper)`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  margin-top: 2.5em;
+  @media ${({ size }) => size.mobile} {
+    display: block;
   }
 `;
 export default SideBar;
