@@ -8,8 +8,11 @@ import {
 import styled from "styled-components";
 import Icon from "./Elements/Icon";
 import TextLink from "./Elements/TextLink";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  const isMainPage = location.pathname === "/";
   const socials = [
     { link: "https://twitter.com/?lang=ko", icon: <FaTwitter /> },
     { link: "https://ko-kr.facebook.com/", icon: <FaFacebookF /> },
@@ -18,8 +21,8 @@ const Footer = () => {
     { link: "https://www.naver.com/", icon: <FaEnvelope /> },
   ];
   return (
-    <footer>
-      <SocialContainer>
+    <FooterContainer isMainPage={isMainPage}>
+      <SocialContainer isMainPage={isMainPage}>
         {socials.map(({ link, icon }) => (
           <a href={link} target="_blank" rel="noreferrer" key={link}>
             <Icon icon={icon} />
@@ -31,13 +34,24 @@ const Footer = () => {
         <TextLink text={"HTML5 UP"} path={"http://html5up.net/"} />. IMAGES:
         <TextLink text={"UNSPLASH"} path={"http://unsplash.com/"} />.
       </Copyright>
-    </footer>
+    </FooterContainer>
   );
 };
+
+// 메인페이지 일 경우 가운데 정렬
+const FooterContainer = styled.footer`
+  ${({ isMainPage }) =>
+    !isMainPage &&
+    `  display: flex;
+    flex-direction:column;
+  align-items: center;
+  margin-bottom: 4em`}
+`;
 const SocialContainer = styled.div`
   display: flex;
   gap: 1em;
   margin-bottom: 2em;
+  ${({ isMainPage }) => !isMainPage && `justify-content: center`};
 `;
 const Copyright = styled.p`
   font-size: 0.6em;

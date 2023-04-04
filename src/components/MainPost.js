@@ -16,7 +16,7 @@ import { useLocation } from "react-router-dom";
 const MainPost = (post) => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";
-  console.log(isMainPage);
+
   const [isLike, setIsLike] = useState({
     likeCount: post.likeCount,
     mode: false,
@@ -56,6 +56,8 @@ const MainPost = (post) => {
           />
           <SubTitle text={subtitle} />
         </TitleWrapper>
+
+        {/* 날짜, 작가 */}
         <InfoWrapper>
           <Date d={date} type={"bold"} />
           <Author type={"all"} name={author} src={authorImg.type} />
@@ -74,7 +76,9 @@ const MainPost = (post) => {
           text.split("\n").map((param, idx) => (
             <>
               <p key={idx}>{param}</p>
-              {idx !== text.split("\n").length - 1 ? <br /> : null}
+              {idx !== text.split("\n").length - 1 ? (
+                <br key={"br" - idx} />
+              ) : null}
             </>
           ))
         )}
@@ -116,6 +120,9 @@ const PostContainer = styled.article`
   padding: 3.6em 3em;
   margin-bottom: 2.2em;
   border: 1px solid rgba(160, 160, 160, 0.3);
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 const TitleContainer = styled(Row)`
   width: calc(100% + 6em);
@@ -134,8 +141,7 @@ const InfoWrapper = styled(Row)`
   justify-content: center;
   flex-direction: column;
   gap: 0.67em;
-  width: 30%;
-  padding-right: 3em;
+  padding: 3.6em 3em;
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   flex-shrink: 0;
 `;

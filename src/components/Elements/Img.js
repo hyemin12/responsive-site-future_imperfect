@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 const Img = ({ src, path, alt }) => {
   const location = useLocation();
-  if (location.pathname === "/")
+  const isMainPage = location.pathname === "/";
+  if (isMainPage)
     return (
-      <LinkWrapper to={`./post/:${path}`} style={{ display: "block" }}>
-        <ImgTag src={src} alt={alt} />
+      <LinkWrapper to={`./post/${path}`} style={{ display: "block" }}>
+        <ImgTag src={src} alt={alt} isMainPage={isMainPage} />
       </LinkWrapper>
     );
   return <ImgTag src={src} alt={alt} />;
@@ -20,7 +21,8 @@ const ImgTag = styled.img`
   height: 100%;
   object-fit: cover;
   transition: 0.4s;
-  &:hover {
+
+  ${({ isMainPage }) => !isMainPage} && &:hover {
     transform: scale(1.1);
   }
 `;

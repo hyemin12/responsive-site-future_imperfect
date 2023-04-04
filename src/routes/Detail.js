@@ -6,11 +6,11 @@ import MainPost from "../components/MainPost";
 import SideBar from "../components/SideBar";
 
 import { data } from "../data";
+import Footer from "../components/Footer";
 
 const Detail = () => {
   const { id } = useParams();
   const post = data.filter((element) => element.id === id * 1)[0];
-  console.log(id, data, post, typeof id);
 
   return (
     <Layout>
@@ -19,13 +19,14 @@ const Detail = () => {
           <MainPost {...post} />
         </Container>
       )}
+
+      <Footer />
     </Layout>
   );
 };
 
 const Container = styled.div`
-  // width: 90vw;
   padding: 3.5em 5em;
 `;
-const PostWrapper = styled.div``;
+
 export default Detail;

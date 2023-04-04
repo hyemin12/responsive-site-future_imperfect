@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Button = ({ text, path, width }) => {
   return (
-    <Link to={path ? `./post/:${path}` : "#"}>
+    <Link to={path ? `./post/${path}` : "#"}>
       <Btn width={width}>{text}</Btn>
     </Link>
   );
