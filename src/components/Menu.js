@@ -1,21 +1,53 @@
-import styled from "styled-components";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-
-import Button from "./Elements/Button";
-import SearchInput from "./Elements/SearchInput";
+import styled, { keyframes } from "styled-components";
 
 import { data } from "../data";
 import { useMenuContext } from "../hooks/menu_context";
+
+import Button from "./Elements/Button";
+import SearchInput from "./Elements/SearchInput";
 import { useRef } from "react";
+import { useEffect } from "react";
+import { fadeIn, fadeOut } from "./styles/animations";
 
 const Menu = () => {
   const location = useLocation();
   const newPosts = data.slice(0, 4);
-  const { setIsOpenMenu } = useMenuContext();
+  const { isOpenMenu, setIsOpenMenu } = useMenuContext();
+  // const[isOpen,setOpen]
+  const containerRef = useRef(null);
+  const MenuRef = useRef(null);
+
+  console.log(containerRef, MenuRef);
+
+  const isOpenF = () => {
+    if (isOpenMenu) {
+      containerRef.current.style.transition = "0.4s";
+      containerRef.current.style.display = "block";
+      containerRef.current.style.opacity = 1;
+      MenuRef.current.style.animationName = slideLeft;
+      MenuRef.current.style.animationDuration = ` 0.4s`;
+      // MenuRef.current.style.transform = "translateX(-400px)";
+      MenuRef.current.style.right = 0;
+    } else {
+      containerRef.current.animationName = fadeOut;
+      containerRef.current.style.display = "none";
+    }
+  };
+  useEffect(() => {
+    isOpenF();
+  }, [isOpenMenu]);
 
   return (
-    <Container onClick={() => setIsOpenMenu(false)}>
-      <MenuContainer>
+    <Container
+      state={isOpenMenu}
+      ref={containerRef}
+      onClick={() => {
+        setIsOpenMenu(false);
+      }}
+    >
+      <MenuContainer ref={MenuRef} state={isOpenMenu}>
         <Section>
           <SearchInput />
         </Section>
@@ -37,7 +69,9 @@ const Menu = () => {
     </Container>
   );
 };
+
 const Container = styled.div`
+  display: none;
   width: 100%;
   height: 100%;
   background-color: rgba(244, 244, 244, 0.9);
@@ -45,6 +79,11 @@ const Container = styled.div`
   top: 0;
   left: 0;
   z-index: 10;
+  opacity: 0;
+  animation-duration: 0.4s;
+`;
+const slideLeft = keyframes`
+transform : translate(400px)
 `;
 const MenuContainer = styled.div`
   width: 400px;
@@ -53,7 +92,10 @@ const MenuContainer = styled.div`
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   position: absolute;
   top: 0;
-  right: 0;
+  right: -400px;
+  transition: 0.4s;
+  overflow-y: scroll;
+  animation-duration: 0.4s;
 `;
 const Section = styled.div`
   padding: 3em 3.5em;

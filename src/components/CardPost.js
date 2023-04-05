@@ -27,17 +27,17 @@ const CardPost = (post) => {
 };
 
 const CardPostContainer = styled.article`
-  margin-bottom: 2em;
+  margin-bottom: 0;
   border: 1px solid rgba(160, 160, 160, 0.3);
+
   @media ${({ size }) => size.desktop} {
-    &:last-child {
-      margin-bottom: 0;
-    }
+    width: 100%;
   }
-  @media ${({ size }) => size.table} {
+
+  @media ${({ size }) => size.tablet} {
     width: calc((100% - 2em) / 2);
-    margin-bottom: 0;
   }
+
   @media ${({ size }) => size.mobile} {
     width: 100%;
     margin-bottom: 2em;
@@ -61,6 +61,7 @@ const CardBottom = styled.div`
 `;
 
 const Author = styled.div`
+  flex-shrink: 0;
   width: 40px;
   height: 40px;
 `;
