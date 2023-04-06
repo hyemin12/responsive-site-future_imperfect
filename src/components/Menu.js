@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
@@ -7,41 +7,38 @@ import { useMenuContext } from "../hooks/menu_context";
 
 import Button from "./Elements/Button";
 import SearchInput from "./Elements/SearchInput";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { fadeIn, fadeOut } from "./styles/animations";
+
+// import { fadeIn } from "./styles/animations";
 
 const Menu = () => {
   const location = useLocation();
   const newPosts = data.slice(0, 4);
+
   const { isOpenMenu, setIsOpenMenu } = useMenuContext();
-  // const[isOpen,setOpen]
+
   const containerRef = useRef(null);
   const MenuRef = useRef(null);
 
-  console.log(containerRef, MenuRef);
-
-  const isOpenF = () => {
-    if (isOpenMenu) {
-      containerRef.current.style.transition = "0.4s";
-      containerRef.current.style.display = "block";
-      containerRef.current.style.opacity = 1;
-      MenuRef.current.style.animationName = slideLeft;
-      MenuRef.current.style.animationDuration = ` 0.4s`;
-      // MenuRef.current.style.transform = "translateX(-400px)";
-      MenuRef.current.style.right = 0;
-    } else {
-      containerRef.current.animationName = fadeOut;
-      containerRef.current.style.display = "none";
-    }
-  };
+  /** 메뉴 보여짐/안보여짐 애니메이션 */
   useEffect(() => {
-    isOpenF();
+    if (isOpenMenu) {
+      containerRef.current.style.display = "block";
+      setTimeout(() => {
+        containerRef.current.style.opacity = 1;
+        MenuRef.current.style.transform = "translateX(0)";
+      }, 100);
+    } else {
+      containerRef.current.style.opacity = 0;
+      MenuRef.current.style.transform = "translateX(400px)";
+      setTimeout(() => {
+        containerRef.current.style.display = "none";
+      }, 150);
+    }
+    return () => clearTimeout();
   }, [isOpenMenu]);
 
   return (
     <Container
-      state={isOpenMenu}
       ref={containerRef}
       onClick={() => {
         setIsOpenMenu(false);
@@ -56,6 +53,7 @@ const Menu = () => {
             <LinkWrapper
               key={id}
               to={location.pathname === "/" ? `./post/${id}` : `../post/${id}`}
+              onClick={() => setIsOpenMenu(false)}
             >
               <Title>{title}</Title>
               <SubTitle>{subtitle}</SubTitle>
@@ -71,7 +69,6 @@ const Menu = () => {
 };
 
 const Container = styled.div`
-  display: none;
   width: 100%;
   height: 100%;
   background-color: rgba(244, 244, 244, 0.9);
@@ -80,11 +77,9 @@ const Container = styled.div`
   left: 0;
   z-index: 10;
   opacity: 0;
-  animation-duration: 0.4s;
+  transition: all 0.4s;
 `;
-const slideLeft = keyframes`
-transform : translate(400px)
-`;
+
 const MenuContainer = styled.div`
   width: 400px;
   height: 100vh;
@@ -92,10 +87,10 @@ const MenuContainer = styled.div`
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   position: absolute;
   top: 0;
-  right: -400px;
-  transition: 0.4s;
+  right: 0;
+  transform: translateX(400px);
+  transition: all 0.4s;
   overflow-y: scroll;
-  animation-duration: 0.4s;
 `;
 const Section = styled.div`
   padding: 3em 3.5em;
@@ -144,3 +139,13 @@ const LinkWrapper = styled(Link)`
   }
 `;
 export default Menu;
+
+// ${({ state }) =>
+//   state
+//     ? `display: block;
+// opacity: 1;
+// transition: 1s;`
+//     : ` display: none;
+// opacity: 0;
+// transition: 1s;`} {
+// }

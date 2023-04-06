@@ -121,6 +121,7 @@ const Row = styled.div`
   display: flex;
 `;
 const PostContainer = styled.article`
+  width: 100%;
   max-width: 1500px;
   background-color: #fff;
   padding: 3.6em 3em;
@@ -130,10 +131,10 @@ const PostContainer = styled.article`
   &:last-child {
     margin-bottom: 0;
   }
-  @media ${({ size }) => size.tabletPortrait} {
-    width: calc(100% + 7em);
-    margin-left: -3.5em;
-  }
+  // @media ${({ size }) => size.tabletPortrait} {
+  //   width: calc(100% + 7em);
+  //   margin-left: -3.5em;
+  // }
 `;
 
 const TitleContainer = styled(Row)`

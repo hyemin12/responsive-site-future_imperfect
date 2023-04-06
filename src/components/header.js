@@ -7,13 +7,11 @@ import theme from "./styles/theme";
 import Icon from "./Elements/Icon";
 
 import { FaSearch, FaBars } from "react-icons/fa";
-import { useRef } from "react";
-import { useEffect } from "react";
 
 const links = ["lorem", "ipsum", "feugiat", "tempus", "adipiscing"];
 
 const Header = () => {
-  const { isOpenMenu, setIsOpenMenu } = useMenuContext();
+  const { setIsOpenMenu } = useMenuContext();
 
   return (
     <HeaderContainer size={theme.device}>
@@ -97,6 +95,7 @@ const IconItem = styled.li`
   height: 100%;
   border-left: 1px solid rgba(160, 160, 160, 0.3);
   border-right: 1px solid rgba(160, 160, 160, 0.3);
+  cursor: pointer;
   &:last-child {
     border: none;
   }
