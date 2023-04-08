@@ -14,7 +14,7 @@ const CommentButton = ({ count }) => {
 };
 const Btn = styled.div`
   &:hover {
-    color: ${({ theme }) => theme.common.pointColor};
+    color: ${({ theme }) => theme.color.pointColor};
   }
 `;
 export default CommentButton;

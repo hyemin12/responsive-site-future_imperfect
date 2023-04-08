@@ -15,7 +15,7 @@ export const I = styled.i`
   svg {
     fill: #aaa;
     &:hover {
-      fill: ${({ theme }) => theme.common.pointColor};
+      fill: ${({ theme }) => theme.color.pointColor};
     }
   }
 `;

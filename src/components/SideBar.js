@@ -41,7 +41,7 @@ const SideBar = ({ cardPosts, popularPosts }) => {
 const SectionWrapper = styled.div`
   padding-top: 2.5em;
   padding-bottom: 3em;
-  border-top: ${({ theme }) => theme.common.border};
+  border-top: ${({ theme }) => theme.color.border};
 `;
 const SectionTitle = styled.h4`
   margin-top: 0;

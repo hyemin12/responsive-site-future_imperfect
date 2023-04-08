@@ -24,10 +24,10 @@ const Input = styled.input`
   width: 100%;
   background-color: rgb(244, 244, 244);
   padding-left: 44px;
-  border: ${({ theme }) => theme.common.border};
+  border: ${({ theme }) => theme.color.border};
   &:focus {
-    border-color: ${({ theme }) => theme.common.pointColor};
-    outline: 1px solid ${({ theme }) => theme.common.pointColor};
+    border-color: ${({ theme }) => theme.color.pointColor};
+    outline: 1px solid ${({ theme }) => theme.color.pointColor};
   }
 `;
 const Icon = styled.i`

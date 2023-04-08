@@ -21,7 +21,7 @@ const Btn = styled.button`
   ${({ width }) => width && `width:${width}`};
   background-color: transparent;
   padding: 1.8em 2.1em;
-  border: ${({ theme }) => theme.common.border};
+  border: ${({ theme }) => theme.color.border};
   letter-spacing: 0.2em;
   font-size: 0.7em;
   font-weight: bold;
@@ -30,8 +30,8 @@ const Btn = styled.button`
   transition: 0.4s;
   cursor: pointer;
   &:hover {
-    border-color: ${({ theme }) => theme.common.pointColor};
-    color: ${({ theme }) => theme.common.pointColor};
+    border-color: ${({ theme }) => theme.color.pointColor};
+    color: ${({ theme }) => theme.color.pointColor};
   }
   @media ${({ theme }) => theme.device.mobile} {
     display: block;

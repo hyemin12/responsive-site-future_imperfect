@@ -127,7 +127,7 @@ const PostContainer = styled.article`
   background-color: #fff;
   padding: 3.6em 3em;
   margin-bottom: 2.2em;
-  border: ${({ theme }) => theme.common.border};
+  border: ${({ theme }) => theme.color.border};
   overflow-x: hidden;
   &:last-child {
     margin-bottom: 0;
@@ -140,7 +140,7 @@ const TitleContainer = styled(Row)`
   margin-left: -3em;
   margin-bottom: 1em;
   padding-top: 0;
-  border-bottom: ${({ theme }) => theme.common.border};
+  border-bottom: ${({ theme }) => theme.color.border};
   @media ${({ theme }) => theme.device.tabletPortrait} {
     display: block;
     margin-bottom: 0;
@@ -163,7 +163,7 @@ const InfoWrapper = styled(Row)`
   flex-direction: column;
   gap: 0.67em;
   padding: 3.6em 3em;
-  border-left: ${({ theme }) => theme.common.border};
+  border-left: ${({ theme }) => theme.color.border};
   flex-shrink: 0;
 
   // table 세로 스타일
@@ -222,14 +222,14 @@ const FooterItem = styled(Row)`
   gap: 10px;
   font-size: 0.65em;
   padding: 0 2em;
-  border-left: ${({ theme }) => theme.common.border};
+  border-left: ${({ theme }) => theme.color.border};
   cursor: pointer;
   &:hover,
   &:hover svg,
   &.active,
   &.active svg {
-    color: ${({ theme }) => theme.common.pointColor};
-    fill: ${({ theme }) => theme.common.pointColor};
+    color: ${({ theme }) => theme.color.pointColor};
+    fill: ${({ theme }) => theme.color.pointColor};
   }
 `;
 

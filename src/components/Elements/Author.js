@@ -16,14 +16,13 @@ const Author = ({ src, name, type, border }) => {
   );
 };
 const Container = styled(Link)`
-  display: flex;
-  align-items: center;
+  ${theme.flexBox.flex()}
   gap: 10px;
   @media ${({ theme }) => theme.device.tabletPortrait} {
     ${({ border }) => border === "left"} {
       flex-direction: row-reverse;
       padding-left: 1.2em;
-      border-left: ${({ theme }) => theme.common.border};
+      border-left: ${({ theme }) => theme.color.border};
     }
   }
   @media ${({ theme }) => theme.device.mobile} {
@@ -40,7 +39,7 @@ const AuthorName = styled.p`
   text-underline-offset: 5px;
   transition: 0.4s;
   &:hover {
-    color: ${({ theme }) => theme.common.pointColor};
+    color: ${({ theme }) => theme.color.pointColor};
     text-decoration: none;
   }
   @media ${({ theme }) => theme.device.mobile} {

@@ -28,7 +28,7 @@ const CardPost = (post) => {
 
 const CardPostContainer = styled.article`
   margin-bottom: 0;
-  border: ${({ theme }) => theme.common.border};
+  border: ${({ theme }) => theme.color.border};
 
   @media ${({ theme }) => theme.device.desktop} {
     width: 100%;

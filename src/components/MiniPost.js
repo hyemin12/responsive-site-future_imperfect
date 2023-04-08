@@ -26,7 +26,7 @@ const MiniPostContainer = styled.article`
   display: flex;
   gap: 2em;
   padding: 1.2em 0;
-  border-bottom: ${({ theme }) => theme.common.border};
+  border-bottom: ${({ theme }) => theme.color.border};
   &:last-child {
     padding-bottom: 0;
     border-bottom: none;

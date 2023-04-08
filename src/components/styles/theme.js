@@ -12,12 +12,23 @@ const device = {
   mobile: `screen and (max-width:${breakpoint.mobile}px)`,
 };
 
-const common = {
+const color = {
   border: "1px solid rgba(160,160,160,0.3)",
   pointColor: "#2ebaae",
 };
+
+const flexBox = {
+  flex: (direction = "row", align = "center", justify = "start") => `
+  display:flex; 
+  flex-direction: ${direction};
+  align-items: ${align};
+  justify-content: ${justify};
+  `,
+};
+
 const theme = {
   device,
-  common,
+  color,
+  flexBox,
 };
 export default theme;

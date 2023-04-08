@@ -84,7 +84,7 @@ const MenuContainer = styled.div`
   width: 400px;
   height: 100vh;
   background-color: #fff;
-  border-left: ${({ theme }) => theme.common.border};
+  border-left: ${({ theme }) => theme.color.border};
   position: absolute;
   top: 0;
   right: 0;
@@ -94,7 +94,7 @@ const MenuContainer = styled.div`
 `;
 const Section = styled.div`
   padding: 3em 3.5em;
-  border-bottom: ${({ theme }) => theme.common.border};
+  border-bottom: ${({ theme }) => theme.color.border};
   &:last-child {
     border: none;
   }
@@ -125,7 +125,7 @@ const SubTitle = styled.p`
 const LinkWrapper = styled(Link)`
   display: block;
   padding: 2em 0;
-  border-bottom: ${({ theme }) => theme.common.border};
+  border-bottom: ${({ theme }) => theme.color.border};
   &:first-child {
     padding-top: 0;
   }

@@ -54,7 +54,7 @@ const HeaderContainer = styled.div`
   height: 56px;
   background-color: #fff;
   padding-left: 1.2em;
-  border-bottom: ${({ theme }) => theme.common.border};
+  border-bottom: ${({ theme }) => theme.color.border};
   position: fixed;
   z-index: 9;
   @media ${({ theme }) => theme.device.tabletPortrait} {
@@ -74,14 +74,14 @@ const NavContainer = styled.div`
   height: 100%;
   margin-left: 1.2em;
   padding-left: 0.5em;
-  border-left: ${({ theme }) => theme.common.border};
+  border-left: ${({ theme }) => theme.color.border};
   @media ${({ theme }) => theme.device.tabletPortrait} {
     display: none;
   }
 `;
 const NavItem = styled(NavLink)`
   padding: 0 1.3em;
-  border-right: ${({ theme }) => theme.common.border};
+  border-right: ${({ theme }) => theme.color.border};
   font-size: 0.7em;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -99,8 +99,8 @@ const IconItem = styled.li`
   align-items: center;
   width: 64px;
   height: 100%;
-  border-left: ${({ theme }) => theme.common.border};
-  border-right: ${({ theme }) => theme.common.border};
+  border-left: ${({ theme }) => theme.color.border};
+  border-right: ${({ theme }) => theme.color.border};
   cursor: pointer;
   &:last-child {
     border: none;
