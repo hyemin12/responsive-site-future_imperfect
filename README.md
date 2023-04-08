@@ -59,3 +59,5 @@ https://codepen.io/izer/pen/RYvevG
 - tablet : 1023px
 - tablet(세로) : 771px
 - mobile : 358px
+
+theme={theme}

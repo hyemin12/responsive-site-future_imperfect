@@ -1,36 +1,37 @@
 import styled from "styled-components";
 
+import theme from "./styles/theme";
+
 import Intro from "./Intro";
 import CardPost from "./CardPost";
 import MiniPost from "./MiniPost";
 import About from "./About";
 import Footer from "./Footer";
-import theme from "./styles/theme";
 
 const SideBar = ({ cardPosts, popularPosts }) => {
   return (
     <div>
-      <IntroWrapper size={theme.device}>
+      <IntroWrapper theme={theme}>
         <Intro />
       </IntroWrapper>
 
-      <CardPostWrapper size={theme.device}>
+      <CardPostWrapper theme={theme}>
         {cardPosts.map((post) => (
           <CardPost key={post.id} {...post} />
         ))}
       </CardPostWrapper>
 
-      <SectionWrapper>
+      <SectionWrapper theme={theme}>
         <SectionTitle>Popular Posts</SectionTitle>
         {popularPosts.map((post) => (
           <MiniPost key={post.id} {...post} />
         ))}
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper theme={theme}>
         <SectionTitle> About</SectionTitle>
         <About />
       </SectionWrapper>
-      <SectionWrapper>
+      <SectionWrapper theme={theme}>
         <Footer />
       </SectionWrapper>
     </div>
@@ -40,10 +41,7 @@ const SideBar = ({ cardPosts, popularPosts }) => {
 const SectionWrapper = styled.div`
   padding-top: 2.5em;
   padding-bottom: 3em;
-  ${({ borderBottom }) =>
-    borderBottom && "border-bottom: 1px solid rgba(160, 160, 160, 0.3)"};
-
-  border-top: 1px solid rgba(160, 160, 160, 0.3);
+  border-top: ${({ theme }) => theme.common.border};
 `;
 const SectionTitle = styled.h4`
   margin-top: 0;
@@ -52,7 +50,7 @@ const SectionTitle = styled.h4`
   letter-spacing: 0.2em;
 `;
 const IntroWrapper = styled.div`
-  @media ${({ size }) => size.tablet} {
+  @media ${({ theme }) => theme.device.tablet} {
     display: none;
   }
 `;
@@ -61,7 +59,7 @@ const CardPostWrapper = styled(SectionWrapper)`
   flex-wrap: wrap;
   gap: 2em;
   margin-top: 2.5em;
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     display: block;
   }
 `;

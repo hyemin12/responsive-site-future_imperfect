@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import theme from "./styles/theme";
+
 import Date from "./Elements/Date";
 import Title from "./Elements/Title";
 
 const MiniPost = (post) => {
   const { id, title, date, img } = post;
   return (
-    <MiniPostContainer>
+    <MiniPostContainer theme={theme}>
       <>
         <ImgWrapper to={`./post/${id}`}>
           <Img src={img.type} alt={title} />
@@ -24,7 +26,7 @@ const MiniPostContainer = styled.article`
   display: flex;
   gap: 2em;
   padding: 1.2em 0;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  border-bottom: ${({ theme }) => theme.common.border};
   &:last-child {
     padding-bottom: 0;
     border-bottom: none;

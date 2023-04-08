@@ -7,10 +7,10 @@ const Author = ({ src, name, type, border }) => {
     <Container
       to="#"
       onClick={(e) => e.preventDefault}
-      size={theme.device}
+      theme={theme}
       border={border}
     >
-      {type === "all" && <AuthorName size={theme.device}>{name}</AuthorName>}
+      {type === "all" && <AuthorName theme={theme}>{name}</AuthorName>}
       <AuthorImage src={src} alt={`Author ${name}`} />
     </Container>
   );
@@ -19,14 +19,14 @@ const Container = styled(Link)`
   display: flex;
   align-items: center;
   gap: 10px;
-  @media ${({ size }) => size.tabletPortrait} {
-    ${({ border }) =>
-      border === "left" &&
-      `flex-direction: row-reverse;
-    padding-left: 1.2em;
-    border-left: 1px solid rgba(160, 160, 160, 0.3);`}
+  @media ${({ theme }) => theme.device.tabletPortrait} {
+    ${({ border }) => border === "left"} {
+      flex-direction: row-reverse;
+      padding-left: 1.2em;
+      border-left: ${({ theme }) => theme.common.border};
+    }
   }
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     display: block;
     border-left: none;
   }
@@ -40,10 +40,10 @@ const AuthorName = styled.p`
   text-underline-offset: 5px;
   transition: 0.4s;
   &:hover {
-    color: #2ebaae;
+    color: ${({ theme }) => theme.common.pointColor};
     text-decoration: none;
   }
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     display: none;
   }
 `;

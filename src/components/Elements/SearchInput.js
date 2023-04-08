@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
+import theme from "../styles/theme";
+
 import { FaSearch } from "react-icons/fa";
 
 const SearchInput = () => {
   return (
     <Form>
-      <Input type="text" placeholder="Search" />
-      <Icon>
+      <Input type="text" placeholder="Search" theme={theme} />
+      <Icon theme={theme}>
         <FaSearch />
       </Icon>
     </Form>
@@ -22,10 +24,10 @@ const Input = styled.input`
   width: 100%;
   background-color: rgb(244, 244, 244);
   padding-left: 44px;
-  border: 1px solid rgba(160, 160, 160, 0.3);
+  border: ${({ theme }) => theme.common.border};
   &:focus {
-    border-color: #2ebaae;
-    outline: 1px solid #2ebaae;
+    border-color: ${({ theme }) => theme.common.pointColor};
+    outline: 1px solid ${({ theme }) => theme.common.pointColor};
   }
 `;
 const Icon = styled.i`

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
+import theme from "../styles/theme";
+
 const Icon = ({ icon }) => {
-  return <I>{icon}</I>;
+  return <I theme={theme}>{icon}</I>;
 };
 
 export const I = styled.i`
@@ -13,7 +15,7 @@ export const I = styled.i`
   svg {
     fill: #aaa;
     &:hover {
-      fill: #2ebaae;
+      fill: ${({ theme }) => theme.common.pointColor};
     }
   }
 `;

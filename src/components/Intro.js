@@ -7,7 +7,7 @@ import theme from "./styles/theme";
 
 const Intro = () => {
   return (
-    <IntroContainer size={theme.device}>
+    <IntroContainer theme={theme}>
       <Logo />
       <br />
       <Title
@@ -32,7 +32,7 @@ const Intro = () => {
 };
 const IntroContainer = styled.div`
   margin-bottom: 3em;
-  @media ${({ size }) => size.tablet} {
+  @media ${({ theme }) => theme.device.tablet} {
    display:flex;
    flex-direction:column;
    align-items:center;

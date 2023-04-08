@@ -9,7 +9,7 @@ import theme from "./styles/theme";
 const CardPost = (post) => {
   const { id, title, author, authorImg, img, date } = post;
   return (
-    <CardPostContainer size={theme.device}>
+    <CardPostContainer theme={theme}>
       <CardTop>
         <Img src={img.type} alt={title} path={id} />
       </CardTop>
@@ -28,17 +28,17 @@ const CardPost = (post) => {
 
 const CardPostContainer = styled.article`
   margin-bottom: 0;
-  border: 1px solid rgba(160, 160, 160, 0.3);
+  border: ${({ theme }) => theme.common.border};
 
-  @media ${({ size }) => size.desktop} {
+  @media ${({ theme }) => theme.device.desktop} {
     width: 100%;
   }
 
-  @media ${({ size }) => size.tablet} {
+  @media ${({ theme }) => theme.device.tablet} {
     width: calc((100% - 2em) / 2);
   }
 
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     width: 100%;
     margin-bottom: 2em;
     &:last-child {

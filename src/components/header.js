@@ -14,22 +14,28 @@ const Header = () => {
   const { setIsOpenMenu } = useMenuContext();
 
   return (
-    <HeaderContainer size={theme.device}>
+    <HeaderContainer theme={theme}>
       <Link to="/">
         <H4>Future imperfect</H4>
       </Link>
-      <NavContainer size={theme.device}>
+      <NavContainer theme={theme}>
         {links.map((link) => (
-          <NavItem to="#" onClick={(e) => e.preventDefault} key={link}>
+          <NavItem
+            to="#"
+            onClick={(e) => e.preventDefault}
+            key={link}
+            theme={theme}
+          >
             {link}
           </NavItem>
         ))}
       </NavContainer>
-      <IconWrapper size={theme.device}>
-        <IconItem>
+      <IconWrapper theme={theme}>
+        <IconItem theme={theme}>
           <Icon icon={<FaSearch />} />
         </IconItem>
         <IconItem
+          theme={theme}
           onClick={() => {
             setIsOpenMenu(true);
           }}
@@ -48,10 +54,10 @@ const HeaderContainer = styled.div`
   height: 56px;
   background-color: #fff;
   padding-left: 1.2em;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  border-bottom: ${({ theme }) => theme.common.border};
   position: fixed;
   z-index: 9;
-  @media ${({ size }) => size.tabletPortrait} {
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     justify-content: space-between;
   }
 `;
@@ -68,14 +74,14 @@ const NavContainer = styled.div`
   height: 100%;
   margin-left: 1.2em;
   padding-left: 0.5em;
-  border-left: 1px solid rgba(160, 160, 160, 0.3);
-  @media ${({ size }) => size.tabletPortrait} {
+  border-left: ${({ theme }) => theme.common.border};
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     display: none;
   }
 `;
 const NavItem = styled(NavLink)`
   padding: 0 1.3em;
-  border-right: 1px solid rgba(160, 160, 160, 0.3);
+  border-right: ${({ theme }) => theme.common.border};
   font-size: 0.7em;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -93,8 +99,8 @@ const IconItem = styled.li`
   align-items: center;
   width: 64px;
   height: 100%;
-  border-left: 1px solid rgba(160, 160, 160, 0.3);
-  border-right: 1px solid rgba(160, 160, 160, 0.3);
+  border-left: ${({ theme }) => theme.common.border};
+  border-right: ${({ theme }) => theme.common.border};
   cursor: pointer;
   &:last-child {
     border: none;

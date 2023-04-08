@@ -15,7 +15,7 @@ const Detail = () => {
   return (
     <Layout>
       {post && (
-        <Container size={theme.device}>
+        <Container theme={theme}>
           <MainPost {...post} />
         </Container>
       )}
@@ -28,10 +28,10 @@ const Detail = () => {
 const Container = styled.div`
   padding: 3.5em 5em;
 
-  @media ${({ size }) => size.tablet} {
+  @media ${({ theme }) => theme.device.tablet} {
     padding: 3.5em;
   }
-  @media ${({ size }) => size.tabletPortrait} {
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     padding: 3.5em 0;
   }
 `;

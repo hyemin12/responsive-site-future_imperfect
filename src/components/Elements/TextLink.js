@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import theme from "../styles/theme";
+
 const TextLink = ({ text, type, path, size, padding, offset }) => {
   if (type === "link")
     return (
@@ -10,6 +12,7 @@ const TextLink = ({ text, type, path, size, padding, offset }) => {
         size={size}
         padding={padding}
         offset={offset}
+        theme={theme}
       >
         {text}
       </AText>
@@ -22,6 +25,7 @@ const TextLink = ({ text, type, path, size, padding, offset }) => {
       size={size}
       padding={padding}
       offset={offset}
+      theme={theme}
     >
       {text}
     </AText>
@@ -38,7 +42,7 @@ export const AText = styled.a`
   text-underline-offset: ${({ offset }) => offset}px;
   transition: 0.4s;
   &:hover {
-    color: #2ebaae;
+    color: ${({ theme }) => theme.common.pointColor};
     text-decoration: none;
   }
 `;

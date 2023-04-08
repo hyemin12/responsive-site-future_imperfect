@@ -1,14 +1,13 @@
 import { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 import { data } from "../data";
 import { useMenuContext } from "../hooks/menu_context";
+import theme from "./styles/theme";
 
 import Button from "./Elements/Button";
 import SearchInput from "./Elements/SearchInput";
-
-// import { fadeIn } from "./styles/animations";
 
 const Menu = () => {
   const location = useLocation();
@@ -44,23 +43,24 @@ const Menu = () => {
         setIsOpenMenu(false);
       }}
     >
-      <MenuContainer ref={MenuRef} state={isOpenMenu}>
-        <Section>
+      <MenuContainer ref={MenuRef} state={isOpenMenu} theme={theme}>
+        <Section theme={theme}>
           <SearchInput />
         </Section>
-        <Section>
+        <Section theme={theme}>
           {newPosts.map(({ id, title, subtitle }) => (
             <LinkWrapper
               key={id}
               to={location.pathname === "/" ? `./post/${id}` : `../post/${id}`}
               onClick={() => setIsOpenMenu(false)}
+              theme={theme}
             >
               <Title>{title}</Title>
               <SubTitle>{subtitle}</SubTitle>
             </LinkWrapper>
           ))}
         </Section>
-        <Section>
+        <Section theme={theme}>
           <Button text={"log in"} width={"100%"} />
         </Section>
       </MenuContainer>
@@ -84,7 +84,7 @@ const MenuContainer = styled.div`
   width: 400px;
   height: 100vh;
   background-color: #fff;
-  border-left: 1px solid rgba(160, 160, 160, 0.3);
+  border-left: ${({ theme }) => theme.common.border};
   position: absolute;
   top: 0;
   right: 0;
@@ -94,7 +94,7 @@ const MenuContainer = styled.div`
 `;
 const Section = styled.div`
   padding: 3em 3.5em;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  border-bottom: ${({ theme }) => theme.common.border};
   &:last-child {
     border: none;
   }
@@ -125,7 +125,7 @@ const SubTitle = styled.p`
 const LinkWrapper = styled(Link)`
   display: block;
   padding: 2em 0;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.2);
+  border-bottom: ${({ theme }) => theme.common.border};
   &:first-child {
     padding-top: 0;
   }
@@ -139,13 +139,3 @@ const LinkWrapper = styled(Link)`
   }
 `;
 export default Menu;
-
-// ${({ state }) =>
-//   state
-//     ? `display: block;
-// opacity: 1;
-// transition: 1s;`
-//     : ` display: none;
-// opacity: 0;
-// transition: 1s;`} {
-// }

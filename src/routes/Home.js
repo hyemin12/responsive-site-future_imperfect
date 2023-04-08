@@ -19,11 +19,11 @@ const Home = () => {
 
   return (
     <Layout>
-      <Container size={theme.device}>
-        <IntroWrapper size={theme.device}>
+      <Container theme={theme}>
+        <IntroWrapper theme={theme}>
           <Intro />
         </IntroWrapper>
-        <Main id="main" size={theme.device}>
+        <Main id="main" theme={theme}>
           {mainPosts.map((post) => (
             <MainPost key={post.id} {...post} textOverflow={true} />
           ))}
@@ -39,23 +39,23 @@ const Container = styled.div`
   flex-direction: row-reverse;
   padding: 3.5em 5em;
   gap: 3.5em;
-  @media ${({ size }) => size.tablet} {
+  @media ${({ theme }) => theme.device.tablet} {
     display: block;
   }
-  @media ${({ size }) => size.tabletPortrait} {
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     padding: 3.5em;
   }
 `;
 const Main = styled.div`
   width: 62vw;
   flex-shrink: 0;
-  @media ${({ size }) => size.tablet} {
+  @media ${({ theme }) => theme.device.tablet} {
     width: 100%;
   }
 `;
 const IntroWrapper = styled.div`
   display: none;
-  @media ${({ size }) => size.tablet} {
+  @media ${({ theme }) => theme.device.tablet} {
     display: block;
 `;
 export default Home;

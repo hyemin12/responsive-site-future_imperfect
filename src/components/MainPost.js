@@ -45,9 +45,9 @@ const MainPost = (post) => {
   };
 
   return (
-    <PostContainer size={theme.device}>
-      <TitleContainer size={theme.device}>
-        <TitleWrapper size={theme.device}>
+    <PostContainer theme={theme}>
+      <TitleContainer theme={theme}>
+        <TitleWrapper theme={theme}>
           <Title
             type={isMainPage ? "link" : "default"}
             text={title}
@@ -59,7 +59,7 @@ const MainPost = (post) => {
         </TitleWrapper>
 
         {/* 날짜, 작가 */}
-        <InfoWrapper size={theme.device}>
+        <InfoWrapper theme={theme}>
           <Date d={date} type={"bold"} />
           <Author
             type={"all"}
@@ -69,7 +69,7 @@ const MainPost = (post) => {
           />
         </InfoWrapper>
       </TitleContainer>
-      <ImgWrapper size={theme.device}>
+      <ImgWrapper theme={theme}>
         <Img src={img.type} alt={title} path={id} />
       </ImgWrapper>
 
@@ -90,9 +90,9 @@ const MainPost = (post) => {
         )}
       </TextWrapper>
 
-      <FooterContainer size={theme.device}>
+      <FooterContainer theme={theme}>
         {isMainPage && <Button text={"continue reading"} path={id} />}
-        <FooterRow size={theme.device}>
+        <FooterRow theme={theme}>
           <TextLink
             text={tag}
             path="#"
@@ -104,11 +104,12 @@ const MainPost = (post) => {
           <FooterItem
             className={isLike.mode ? "active" : ""}
             onClick={toggleLikeMode}
+            theme={theme}
           >
             <Icon icon={<FaHeart />} />
             <p>{isLike.likeCount}</p>
           </FooterItem>
-          <FooterItem>
+          <FooterItem theme={theme}>
             <Icon icon={<FaComment />} />
             <p>{commentCount}</p>
           </FooterItem>
@@ -126,15 +127,11 @@ const PostContainer = styled.article`
   background-color: #fff;
   padding: 3.6em 3em;
   margin-bottom: 2.2em;
-  border: 1px solid rgba(160, 160, 160, 0.3);
+  border: ${({ theme }) => theme.common.border};
   overflow-x: hidden;
   &:last-child {
     margin-bottom: 0;
   }
-  // @media ${({ size }) => size.tabletPortrait} {
-  //   width: calc(100% + 7em);
-  //   margin-left: -3.5em;
-  // }
 `;
 
 const TitleContainer = styled(Row)`
@@ -143,8 +140,8 @@ const TitleContainer = styled(Row)`
   margin-left: -3em;
   margin-bottom: 1em;
   padding-top: 0;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.3);
-  @media ${({ size }) => size.tabletPortrait} {
+  border-bottom: ${({ theme }) => theme.common.border};
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     display: block;
     margin-bottom: 0;
     padding: 3.6em 3em;
@@ -155,7 +152,7 @@ const TitleContainer = styled(Row)`
 const TitleWrapper = styled.div`
   flex-grow: 1;
   padding: 3.6em 3em;
-  @media ${({ size }) => size.tabletPortrait} {
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     padding: 0;
     margin-bottom: 2.4em;
   }
@@ -166,18 +163,18 @@ const InfoWrapper = styled(Row)`
   flex-direction: column;
   gap: 0.67em;
   padding: 3.6em 3em;
-  border-left: 1px solid rgba(160, 160, 160, 0.3);
+  border-left: ${({ theme }) => theme.common.border};
   flex-shrink: 0;
 
   // table 세로 스타일
-  @media ${({ size }) => size.tabletPortrait} {
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     flex-direction: row;
     align-items: center;
     padding: 0;
     border-left: none;
   }
   // 모바일스타일
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     flex-direction: column;
     align-items: center;
     padding: 0;
@@ -189,7 +186,7 @@ const ImgWrapper = styled.div`
   margin: 3em 0;
   aspect-ratio: 841/341;
   overflow: hidden;
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     width: calc(100% + 7em);
     margin-top: 0;
     margin-bottom: 2em;
@@ -211,12 +208,12 @@ const TextWrapper = styled.div`
 const FooterContainer = styled(Row)`
   align-items: center;
   justify-content: space-between;
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     flex-direction: column-reverse;
   }
 `;
 const FooterRow = styled(Row)`
-  @media ${({ size }) => size.mobile} {
+  @media ${({ theme }) => theme.device.mobile} {
     margin-bottom: 2em;
   }
 `;
@@ -225,17 +222,14 @@ const FooterItem = styled(Row)`
   gap: 10px;
   font-size: 0.65em;
   padding: 0 2em;
-  border-left: 1px solid rgba(160, 160, 160, 0.3);
+  border-left: ${({ theme }) => theme.common.border};
   cursor: pointer;
   &:hover,
-  &:hover svg {
-    color: #2ebaae;
-    fill: #2ebaae;
-  }
+  &:hover svg,
   &.active,
   &.active svg {
-    color: #2ebaae;
-    fill: #2ebaae;
+    color: ${({ theme }) => theme.common.pointColor};
+    fill: ${({ theme }) => theme.common.pointColor};
   }
 `;
 

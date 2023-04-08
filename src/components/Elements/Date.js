@@ -4,7 +4,7 @@ import theme from "../styles/theme";
 
 const Date = ({ d, type }) => {
   return (
-    <P type={type} size={theme.device}>
+    <P type={type} theme={theme}>
       {moment(d).format("LL")}
     </P>
   );
@@ -24,7 +24,7 @@ font-weight: 800;
 font-size: 0.65em;
 font-weight: 400;
       `};
-  @media ${({ size }) => size.tabletPortrait} {
+  @media ${({ theme }) => theme.device.tabletPortrait} {
     padding-right: 1em;
   }
 `;
