@@ -4,8 +4,8 @@ const MenuContext = createContext();
 
 // Provider
 export function MenuContextProvider({ children }) {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const value = { isOpenMenu, setIsOpenMenu };
+  const [visibleMenu, setVisibleMenu] = useState(false);
+  const value = { visibleMenu, setVisibleMenu };
   return <MenuContext.Provider value={value}>{children}</MenuContext.Provider>;
 }
 

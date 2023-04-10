@@ -13,7 +13,7 @@ const Menu = () => {
   const location = useLocation();
   const newPosts = data.slice(0, 4);
 
-  const { isOpenMenu, setIsOpenMenu } = useMenuContext();
+  const { visibleMenu, setVisibleMenu } = useMenuContext();
 
   const containerRef = useRef(null);
   const MenuRef = useRef(null);
@@ -22,12 +22,12 @@ const Menu = () => {
     if (e.target.id !== "menu-container") {
       return;
     }
-    setIsOpenMenu(false);
+    setVisibleMenu(false);
   };
 
   /** 메뉴 보여짐/안보여짐 애니메이션 */
   useEffect(() => {
-    if (isOpenMenu) {
+    if (visibleMenu) {
       containerRef.current.style.display = "block";
       setTimeout(() => {
         containerRef.current.style.opacity = 1;
@@ -41,14 +41,14 @@ const Menu = () => {
       }, 150);
     }
     return () => clearTimeout();
-  }, [isOpenMenu]);
+  }, [visibleMenu]);
 
   return (
     <Container ref={containerRef} onClick={handleMenu} id="menu-container">
-      <MenuContainer ref={MenuRef} state={isOpenMenu} theme={theme}>
+      <MenuContainer ref={MenuRef} theme={theme}>
         {/* 검색창 */}
         <Section theme={theme}>
-          <SearchInput />
+          <SearchInput icon={true} />
         </Section>
 
         {/* 포스트 */}
@@ -57,7 +57,7 @@ const Menu = () => {
             <LinkWrapper
               key={id}
               to={location.pathname === "/" ? `./post/${id}` : `../post/${id}`}
-              onClick={() => setIsOpenMenu(false)}
+              onClick={() => setVisibleMenu(false)}
               theme={theme}
             >
               <Title>{title}</Title>

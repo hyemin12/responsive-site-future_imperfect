@@ -51,7 +51,8 @@ const Footer = () => {
 const FooterContainer = styled.footer`
   ${({ isMainPage, theme }) =>
     !isMainPage &&
-    `${theme.flexBox.flex("column", "center", "start")};margin-bottom: 4em;`};
+    `${theme.flexBox.flex("column", "center", "start")};
+    margin-bottom: 4em;`};
 `;
 const SocialContainer = styled.div`
   display: flex;

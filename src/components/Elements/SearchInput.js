@@ -5,13 +5,15 @@ import theme from "../styles/theme";
 import { FaSearch } from "react-icons/fa";
 
 // 검색창
-const SearchInput = () => {
+const SearchInput = ({ icon, width }) => {
   return (
     <Form>
-      <Input type="text" placeholder="Search" theme={theme} />
-      <Icon theme={theme}>
-        <FaSearch />
-      </Icon>
+      <Input type="text" placeholder="Search" theme={theme} icon={icon} />
+      {icon && (
+        <Icon theme={theme}>
+          <FaSearch />
+        </Icon>
+      )}
     </Form>
   );
 };
@@ -25,7 +27,7 @@ const Form = styled.form`
 const Input = styled.input`
   width: 100%;
   background-color: rgb(244, 244, 244);
-  padding-left: 44px;
+  padding-left: ${({ icon }) => (icon ? "44px" : "20px")};
   border: ${({ theme }) => theme.color.border};
   &:focus {
     border-color: ${({ theme }) => theme.color.pointColor};

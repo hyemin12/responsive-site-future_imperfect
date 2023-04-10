@@ -1,17 +1,31 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { useMenuContext } from "../hooks/menu_context";
 import theme from "./styles/theme";
 
 import Icon from "./Elements/Icon";
+import SearchInput from "./Elements/SearchInput";
 
 import { FaSearch, FaBars } from "react-icons/fa";
+import { useRef } from "react";
 
 const links = ["lorem", "ipsum", "feugiat", "tempus", "adipiscing"];
 
 const Header = () => {
-  const { setIsOpenMenu } = useMenuContext();
+  const { setVisibleMenu } = useMenuContext();
+
+  const [visibleSearch, setVisibleSearch] = useState(false);
+
+  // const searchInputRef = useRef();
+
+  const handleVisibleSearch = (e) => {
+    if (e.target.id !== "search-icon") {
+      setVisibleMenu(false);
+    }
+    console.log(e.target.id, e);
+  };
 
   return (
     <HeaderContainer theme={theme}>
@@ -31,13 +45,18 @@ const Header = () => {
         ))}
       </NavContainer>
       <IconWrapper theme={theme}>
-        <IconItem theme={theme}>
-          <Icon icon={<FaSearch />} />
-        </IconItem>
+        <SearchIcon
+          theme={theme}
+          visible={visibleSearch}
+          onClick={() => setVisibleSearch(true)}
+        >
+          <Icon icon={<FaSearch />} id="search-icon" />
+          <SearchInput icon={false} visible={visibleSearch} />
+        </SearchIcon>
         <IconItem
           theme={theme}
           onClick={() => {
-            setIsOpenMenu(true);
+            setVisibleMenu(true);
           }}
         >
           <Icon icon={<FaBars />} />
@@ -90,7 +109,9 @@ const NavItem = styled(NavLink)`
 const IconWrapper = styled.ul`
   display: flex;
   height: 100%;
+  position: relative;
 `;
+
 const IconItem = styled.li`
   ${({ theme }) => theme.flexBox.flex("row", "center", "center")}
   width: 64px;
@@ -101,5 +122,26 @@ const IconItem = styled.li`
   &:last-child {
     border: none;
   }
+`;
+const SearchIcon = styled(IconItem)`
+  transition: 0.4s;
+  ${({ visible }) =>
+    visible
+      ? `
+      width: 300px;
+  padding: 0 20px;
+  form {
+    width: 100%;
+    margin-left: 20px;
+    opacity: 1;
+  }`
+      : ` 
+  padding: 0;
+  right:64px;
+  form {
+    width: 0;
+    margin-left: 0;
+    opacity: 0;
+  }`}
 `;
 export default Header;
