@@ -49,10 +49,9 @@ const Footer = () => {
 
 // 메인페이지 아닐 경우 가운데 정렬
 const FooterContainer = styled.footer`
-  ${({ isMainPage }) => !isMainPage} {
-    ${({ theme }) => theme.flexBox.flex("column", "cetner", "start")};
-    margin-bottom: 4em;
-  }
+  ${({ isMainPage, theme }) =>
+    !isMainPage &&
+    `${theme.flexBox.flex("column", "center", "start")};margin-bottom: 4em;`};
 `;
 const SocialContainer = styled.div`
   display: flex;
