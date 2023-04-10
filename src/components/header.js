@@ -48,8 +48,7 @@ const Header = () => {
 };
 
 const HeaderContainer = styled.div`
-  display: flex;
-  align-items: center;
+  ${({ theme }) => theme.flexBox.flex()}
   width: 100%;
   height: 56px;
   background-color: #fff;
@@ -68,9 +67,8 @@ const H4 = styled.h4`
   text-transform: uppercase;
 `;
 const NavContainer = styled.div`
+  ${({ theme }) => theme.flexBox.flex()}
   flex-grow: 1;
-  display: flex;
-  align-items: center;
   height: 100%;
   margin-left: 1.2em;
   padding-left: 0.5em;
@@ -94,9 +92,7 @@ const IconWrapper = styled.ul`
   height: 100%;
 `;
 const IconItem = styled.li`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.flexBox.flex("row", "center", "center")}
   width: 64px;
   height: 100%;
   border-left: ${({ theme }) => theme.color.border};

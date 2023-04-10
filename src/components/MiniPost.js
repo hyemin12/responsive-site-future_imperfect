@@ -6,15 +6,15 @@ import theme from "./styles/theme";
 import Date from "./Elements/Date";
 import Title from "./Elements/Title";
 
+/** 이미지 - 제목, 날짜로만 이루어진 포스트  */
 const MiniPost = (post) => {
   const { id, title, date, img } = post;
   return (
     <MiniPostContainer theme={theme}>
-      <>
-        <ImgWrapper to={`./post/${id}`}>
-          <Img src={img.type} alt={title} />
-        </ImgWrapper>
-      </>
+      <ImgWrapper to={`./post/${id}`}>
+        <Img src={img.type} alt={title} />
+      </ImgWrapper>
+
       <div>
         <Title text={title} path={id} size={"0.8em"} short={2} />
         <Date d={date} />

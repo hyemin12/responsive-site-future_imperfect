@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+
+import theme from "./styles/theme";
 
 import Title from "./Elements/Title";
 import SubTitle from "./Elements/SubTitle";
@@ -11,8 +14,6 @@ import TextLink from "./Elements/TextLink";
 import Img from "./Elements/Img";
 
 import { FaHeart, FaComment } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
-import theme from "./styles/theme";
 
 const MainPost = (post) => {
   const location = useLocation();
@@ -46,7 +47,7 @@ const MainPost = (post) => {
 
   return (
     <PostContainer theme={theme}>
-      <TitleContainer theme={theme}>
+      <Header theme={theme}>
         <TitleWrapper theme={theme}>
           <Title
             type={isMainPage ? "link" : "default"}
@@ -68,13 +69,12 @@ const MainPost = (post) => {
             border={"left"}
           />
         </InfoWrapper>
-      </TitleContainer>
+      </Header>
       <ImgWrapper theme={theme}>
         <Img src={img.type} alt={title} path={id} />
       </ImgWrapper>
 
       {/* 본문 */}
-
       <TextWrapper textOverflow={textOverflow}>
         {isMainPage ? (
           <p>{text.split("\n")[0]}</p>
@@ -118,9 +118,6 @@ const MainPost = (post) => {
     </PostContainer>
   );
 };
-const Row = styled.div`
-  display: flex;
-`;
 const PostContainer = styled.article`
   width: 100%;
   max-width: 1500px;
@@ -134,7 +131,8 @@ const PostContainer = styled.article`
   }
 `;
 
-const TitleContainer = styled(Row)`
+const Header = styled.div`
+  display: flex;
   width: calc(100% + 6em);
   margin-top: -3.6em;
   margin-left: -3em;
@@ -157,14 +155,12 @@ const TitleWrapper = styled.div`
     margin-bottom: 2.4em;
   }
 `;
-const InfoWrapper = styled(Row)`
-  align-items: end;
-  justify-content: center;
-  flex-direction: column;
+const InfoWrapper = styled.div`
+  ${({ theme }) => theme.flexBox.flex("column", "end", "center")}
+  flex-shrink: 0;
   gap: 0.67em;
   padding: 3.6em 3em;
   border-left: ${({ theme }) => theme.color.border};
-  flex-shrink: 0;
 
   // table 세로 스타일
   @media ${({ theme }) => theme.device.tabletPortrait} {
@@ -198,6 +194,8 @@ const TextWrapper = styled.div`
   margin-bottom: 2.4em;
   line-height: 1.8;
   font-family: "Source Sans Pro", "sans-serif";
+
+  // 본문 줄임
   ${({ textOverflow }) =>
     textOverflow &&
     `display: -webkit-box;
@@ -205,20 +203,20 @@ const TextWrapper = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;`}
 `;
-const FooterContainer = styled(Row)`
-  align-items: center;
-  justify-content: space-between;
+const FooterContainer = styled.div`
+  ${({ theme }) => theme.flexBox.flex("row", "center", "space-between")}
   @media ${({ theme }) => theme.device.mobile} {
     flex-direction: column-reverse;
   }
 `;
-const FooterRow = styled(Row)`
+const FooterRow = styled.div`
+  display: flex;
   @media ${({ theme }) => theme.device.mobile} {
     margin-bottom: 2em;
   }
 `;
-const FooterItem = styled(Row)`
-  align-items: center;
+const FooterItem = styled.div`
+  ${({ theme }) => theme.flexBox.flex()}
   gap: 10px;
   font-size: 0.65em;
   padding: 0 2em;

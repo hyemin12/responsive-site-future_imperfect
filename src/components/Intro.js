@@ -33,10 +33,7 @@ const Intro = () => {
 const IntroContainer = styled.div`
   margin-bottom: 3em;
   @media ${({ theme }) => theme.device.tablet} {
-   display:flex;
-   flex-direction:column;
-   align-items:center;
-   text-align:center;
+    ${({ theme }) => theme.flexBox.flex("column", "center", "center")} 
 `;
 const P = styled.p`
   display: inline;

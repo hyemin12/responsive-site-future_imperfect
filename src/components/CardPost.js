@@ -13,7 +13,7 @@ const CardPost = (post) => {
       <CardTop>
         <Img src={img.type} alt={title} path={id} />
       </CardTop>
-      <CardBottom>
+      <CardBottom theme={theme}>
         <div>
           <Title text={title} size={"0.8em"} path={id} short={2} />
           <Date d={date} />
@@ -53,11 +53,9 @@ const CardTop = styled.div`
 `;
 
 const CardBottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 1em 1.5em;
-  padding-bottom: 1.9em;
+  ${({ theme }) => theme.flexBox.flex("row", "start", "space-between")}
   background-color: #fff;
+  padding: 1.5em;
 `;
 
 const Author = styled.div`

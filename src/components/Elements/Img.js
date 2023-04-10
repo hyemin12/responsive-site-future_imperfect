@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Img = ({ src, path, alt }) => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";
+
   if (isMainPage)
     return (
       <LinkWrapper to={`./post/${path}`} style={{ display: "block" }}>
@@ -22,8 +23,10 @@ const ImgTag = styled.img`
   object-fit: cover;
   transition: 0.4s;
 
-  ${({ isMainPage }) => !isMainPage} && &:hover {
-    transform: scale(1.1);
+  ${({ isMainPage }) => !isMainPage} {
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 

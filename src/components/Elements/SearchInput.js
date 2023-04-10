@@ -4,6 +4,7 @@ import theme from "../styles/theme";
 
 import { FaSearch } from "react-icons/fa";
 
+// 검색창
 const SearchInput = () => {
   return (
     <Form>
@@ -14,6 +15,7 @@ const SearchInput = () => {
     </Form>
   );
 };
+
 const Form = styled.form`
   display: flex;
   height: 44px;
@@ -31,9 +33,7 @@ const Input = styled.input`
   }
 `;
 const Icon = styled.i`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${({ theme }) => theme.flexBox.flex("row", "center", "center")}
   width: 44px;
   height: 44px;
   position: absolute;

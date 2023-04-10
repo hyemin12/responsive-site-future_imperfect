@@ -18,6 +18,13 @@ const Menu = () => {
   const containerRef = useRef(null);
   const MenuRef = useRef(null);
 
+  const handleMenu = (e) => {
+    if (e.target.id !== "menu-container") {
+      return;
+    }
+    setIsOpenMenu(false);
+  };
+
   /** 메뉴 보여짐/안보여짐 애니메이션 */
   useEffect(() => {
     if (isOpenMenu) {
@@ -37,16 +44,14 @@ const Menu = () => {
   }, [isOpenMenu]);
 
   return (
-    <Container
-      ref={containerRef}
-      onClick={() => {
-        setIsOpenMenu(false);
-      }}
-    >
+    <Container ref={containerRef} onClick={handleMenu} id="menu-container">
       <MenuContainer ref={MenuRef} state={isOpenMenu} theme={theme}>
+        {/* 검색창 */}
         <Section theme={theme}>
           <SearchInput />
         </Section>
+
+        {/* 포스트 */}
         <Section theme={theme}>
           {newPosts.map(({ id, title, subtitle }) => (
             <LinkWrapper
@@ -60,6 +65,8 @@ const Menu = () => {
             </LinkWrapper>
           ))}
         </Section>
+
+        {/* 로그인버튼 */}
         <Section theme={theme}>
           <Button text={"log in"} width={"100%"} />
         </Section>
@@ -75,7 +82,7 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 9;
   opacity: 0;
   transition: all 0.4s;
 `;
@@ -91,6 +98,7 @@ const MenuContainer = styled.div`
   transform: translateX(400px);
   transition: all 0.4s;
   overflow-y: scroll;
+  z-index: 10;
 `;
 const Section = styled.div`
   padding: 3em 3.5em;

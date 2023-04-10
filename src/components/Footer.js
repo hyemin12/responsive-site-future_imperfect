@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Icon from "./Elements/Icon";
 import TextLink from "./Elements/TextLink";
 import { useLocation } from "react-router-dom";
+import theme from "./styles/theme";
 
 const Footer = () => {
   const location = useLocation();
@@ -20,8 +21,9 @@ const Footer = () => {
     { link: "#", icon: <FaRss /> },
     { link: "https://www.naver.com/", icon: <FaEnvelope /> },
   ];
+
   return (
-    <FooterContainer isMainPage={isMainPage}>
+    <FooterContainer isMainPage={isMainPage} theme={theme}>
       <SocialContainer isMainPage={isMainPage}>
         {socials.map(({ link, icon }) => (
           <a
@@ -47,22 +49,20 @@ const Footer = () => {
 
 // 메인페이지 아닐 경우 가운데 정렬
 const FooterContainer = styled.footer`
-  ${({ isMainPage }) =>
-    !isMainPage &&
-    `  display: flex;
-    flex-direction:column;
-  align-items: center;
-  margin-bottom: 4em`}
+  ${({ isMainPage }) => !isMainPage} {
+    ${({ theme }) => theme.flexBox.flex("column", "cetner", "start")};
+    margin-bottom: 4em;
+  }
 `;
 const SocialContainer = styled.div`
   display: flex;
   gap: 1em;
   margin-bottom: 2em;
-  // ${({ isMainPage }) => !isMainPage && `justify-content: center`};
 `;
 const Copyright = styled.p`
   font-size: 0.6em;
   letter-spacing: 0.2em;
   opacity: 0.6;
 `;
+
 export default Footer;
