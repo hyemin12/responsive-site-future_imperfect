@@ -3,25 +3,39 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 
 import { FaSearch } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { data } from "../../data";
+import { useMenuContext } from "../../hooks/menu_context";
 
 // 검색창
 const SearchInput = ({ icon }) => {
   const [value, setValue] = useState("");
+  const { visibleMenu } = useMenuContext();
+
+  // 영어만 입력되도록 설정
   const handleOnChange = (e) => {
-    e.value = e.value.replace(/[^A-Za-z]/gi, "");
-    setValue();
+    const regex = /[^A-Za-z]+$/;
+    if (regex.test(e.target.value)) {
+      return;
+    }
+    setValue(e.target.value);
   };
+  useEffect(() => {
+    if (!visibleMenu) {
+      setValue("");
+    }
+  }, [visibleMenu]);
 
   return (
     <Form>
       <Input
         type="text"
+        value={value}
         placeholder="Search"
+        id="search-input"
         theme={theme}
         icon={icon}
-        id="search-input"
         onChange={handleOnChange}
       />
       {icon && (
