@@ -25,10 +25,18 @@ const flexBox = {
   justify-content: ${justify};
   `,
 };
+const text = {
+  overflow: (short = 1) => `
+  display: -webkit-box;
+  -webkit-line-clamp: ${short};
+  -webkit-box-orient: vertical;
+  overflow: hidden;`,
+};
 
 const theme = {
   device,
   color,
   flexBox,
+  text,
 };
 export default theme;

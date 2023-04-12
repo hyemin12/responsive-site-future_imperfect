@@ -8,9 +8,16 @@ import MiniPost from "./MiniPost";
 import About from "./About";
 import Footer from "./Footer";
 
-const SideBar = ({ cardPosts, popularPosts }) => {
+import { data } from "../data";
+
+const SideBar = () => {
+  const posts = data.sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  const cardPosts = posts.slice(3, 7);
+  const popularPosts = data.sort((a, b) => a.like < b.like).slice(0, 5);
+
   return (
-    <div>
+    <div id="side-bar">
       <IntroWrapper theme={theme}>
         <Intro />
       </IntroWrapper>

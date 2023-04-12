@@ -1,17 +1,22 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+import { useMenuContext } from "../../hooks/menu_context";
+import { useSearchContext } from "../../hooks/search_context";
 import theme from "../styles/theme";
 
 import { FaSearch } from "react-icons/fa";
-import { useEffect, useState } from "react";
 
 import { data } from "../../data";
-import { useMenuContext } from "../../hooks/menu_context";
 
 // 검색창
 const SearchInput = ({ icon }) => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("");
+
   const { visibleMenu } = useMenuContext();
+  const { setSearchResult } = useSearchContext();
 
   // 영어만 입력되도록 설정
   const handleOnChange = (e) => {
@@ -27,8 +32,25 @@ const SearchInput = ({ icon }) => {
     }
   }, [visibleMenu]);
 
+  // 검색기능
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (value.length < 1) {
+      return;
+    }
+
+    const result = data.filter((post) =>
+      post.title.toUpperCase().includes(value.toUpperCase())
+    );
+
+    setSearchResult({ text: value, result: result });
+
+    navigate(`/search/${value}`);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
       <Input
         type="text"
         value={value}

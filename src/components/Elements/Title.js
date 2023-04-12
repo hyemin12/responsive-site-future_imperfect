@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 const Title = ({ text, size, type, weight, lineHeight, path, short }) => {
   const location = useLocation();
+  const isMainPage = location.pathname === "/";
 
-  if (type === "link" || location.pathname === "/")
+  if (type === "link" || isMainPage)
     return (
-      <Link to={path ? `./post/${path}` : "/"}>
+      <Link to={isMainPage ? `./post/${path}` : `../post/${path}`}>
         <H1 size={size} weight={weight} lineHeight={lineHeight} short={short}>
           {text}
         </H1>

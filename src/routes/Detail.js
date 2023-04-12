@@ -19,7 +19,6 @@ const Detail = () => {
           <MainPost {...post} />
         </Container>
       )}
-
       <Footer />
     </Layout>
   );

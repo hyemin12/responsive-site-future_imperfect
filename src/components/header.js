@@ -18,9 +18,10 @@ const Header = () => {
   const [visibleSearch, setVisibleSearch] = useState(false);
 
   const toggleVisibleSearch = (e) => {
-    if (e.target.id === "search-input") {
+    if (e.target.id === "search-input" || e.target.id === "menu-icon") {
       return;
     }
+    console.log(e.target.id);
     setVisibleSearch(!visibleSearch);
   };
 
@@ -47,6 +48,7 @@ const Header = () => {
           <SearchInput icon={false} visible={visibleSearch} />
         </SearchIcon>
         <IconItem
+          id="menu-icon"
           theme={theme}
           onClick={() => {
             setVisibleMenu(true);
@@ -59,7 +61,7 @@ const Header = () => {
   );
 };
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   ${({ theme }) => theme.flexBox.flex()}
   width: 100%;
   height: 56px;
@@ -105,7 +107,7 @@ const IconWrapper = styled.ul`
   position: relative;
 `;
 
-const IconItem = styled.li`
+const IconItem = styled.div`
   ${({ theme }) => theme.flexBox.flex("row", "center", "center")}
   width: 64px;
   height: 100%;
@@ -116,6 +118,7 @@ const IconItem = styled.li`
     border: none;
   }
 `;
+
 const SearchIcon = styled(IconItem)`
   transition: 0.4s;
   ${({ visible }) =>
