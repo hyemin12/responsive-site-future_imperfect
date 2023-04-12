@@ -3,12 +3,27 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 
 import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
+import { data } from "../../data";
 
 // 검색창
-const SearchInput = ({ icon, width }) => {
+const SearchInput = ({ icon }) => {
+  const [value, setValue] = useState("");
+  const handleOnChange = (e) => {
+    e.value = e.value.replace(/[^A-Za-z]/gi, "");
+    setValue();
+  };
+
   return (
     <Form>
-      <Input type="text" placeholder="Search" theme={theme} icon={icon} />
+      <Input
+        type="text"
+        placeholder="Search"
+        theme={theme}
+        icon={icon}
+        id="search-input"
+        onChange={handleOnChange}
+      />
       {icon && (
         <Icon theme={theme}>
           <FaSearch />

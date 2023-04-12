@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { useMenuContext } from "../hooks/menu_context";
 import theme from "./styles/theme";
@@ -9,7 +9,6 @@ import Icon from "./Elements/Icon";
 import SearchInput from "./Elements/SearchInput";
 
 import { FaSearch, FaBars } from "react-icons/fa";
-import { useRef } from "react";
 
 const links = ["lorem", "ipsum", "feugiat", "tempus", "adipiscing"];
 
@@ -18,13 +17,11 @@ const Header = () => {
 
   const [visibleSearch, setVisibleSearch] = useState(false);
 
-  // const searchInputRef = useRef();
-
-  const handleVisibleSearch = (e) => {
-    if (e.target.id !== "search-icon") {
-      setVisibleMenu(false);
+  const toggleVisibleSearch = (e) => {
+    if (e.target.id === "search-input") {
+      return;
     }
-    console.log(e.target.id, e);
+    setVisibleSearch(!visibleSearch);
   };
 
   return (
@@ -44,13 +41,9 @@ const Header = () => {
           </NavItem>
         ))}
       </NavContainer>
-      <IconWrapper theme={theme}>
-        <SearchIcon
-          theme={theme}
-          visible={visibleSearch}
-          onClick={() => setVisibleSearch(true)}
-        >
-          <Icon icon={<FaSearch />} id="search-icon" />
+      <IconWrapper theme={theme} onClick={toggleVisibleSearch}>
+        <SearchIcon theme={theme} visible={visibleSearch}>
+          <Icon icon={<FaSearch />} />
           <SearchInput icon={false} visible={visibleSearch} />
         </SearchIcon>
         <IconItem
