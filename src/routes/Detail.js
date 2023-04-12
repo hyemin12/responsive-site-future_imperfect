@@ -2,30 +2,38 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import Layout from "../components/Layout";
+import Footer from "../components/Footer";
 import MainPost from "../components/MainPost";
-import SideBar from "../components/SideBar";
 
 import { data } from "../data";
+import theme from "../components/styles/theme";
 
 const Detail = () => {
   const { id } = useParams();
   const post = data.filter((element) => element.id === id * 1)[0];
-  console.log(id, data, post, typeof id);
 
   return (
     <Layout>
       {post && (
-        <Container>
+        <Container theme={theme}>
           <MainPost {...post} />
         </Container>
       )}
+
+      <Footer />
     </Layout>
   );
 };
 
 const Container = styled.div`
-  // width: 90vw;
   padding: 3.5em 5em;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    padding: 3.5em;
+  }
+  @media ${({ theme }) => theme.device.tabletPortrait} {
+    padding: 3.5em 0;
+  }
 `;
-const PostWrapper = styled.div``;
+
 export default Detail;

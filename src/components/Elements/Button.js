@@ -1,27 +1,41 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import theme from "../styles/theme";
 
 const Button = ({ text, path, width }) => {
   return (
-    <Link to={path ? `./post/:${path}` : "#"}>
-      <Btn width={width}>{text}</Btn>
-    </Link>
+    <ButtonLink to={path ? `./post/${path}` : "#"} theme={theme}>
+      <Btn width={width} theme={theme}>
+        {text}
+      </Btn>
+    </ButtonLink>
   );
 };
+const ButtonLink = styled(Link)`
+  @media ${({ theme }) => theme.device.mobile} {
+    display: block;
+    width: 100%;
+  }
+`;
 const Btn = styled.button`
   ${({ width }) => width && `width:${width}`};
   background-color: transparent;
   padding: 1.8em 2.1em;
-  border: 1px solid rgba(160, 160, 160, 0.3);
+  border: ${({ theme }) => theme.color.border};
   letter-spacing: 0.2em;
   font-size: 0.7em;
   font-weight: bold;
+  text-align: center;
   text-transform: uppercase;
   transition: 0.4s;
   cursor: pointer;
   &:hover {
-    border-color: #2ebaae;
-    color: #2ebaae;
+    border-color: ${({ theme }) => theme.color.pointColor};
+    color: ${({ theme }) => theme.color.pointColor};
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    display: block;
+    width: 100%;
   }
 `;
 export default Button;

@@ -1,33 +1,49 @@
 import styled from "styled-components";
 
 import Title from "./Elements/Title";
-import Author from "./Elements/Author";
 import Img from "./Elements/Img";
 import Date from "./Elements/Date";
 
+import theme from "./styles/theme";
+
 const CardPost = (post) => {
-  const { id, title, authorImg, img, date } = post;
+  const { id, title, author, authorImg, img, date } = post;
   return (
-    <CardPostContainer>
+    <CardPostContainer theme={theme}>
       <CardTop>
         <Img src={img.type} alt={title} path={id} />
       </CardTop>
-      <CardBottom>
+      <CardBottom theme={theme}>
         <div>
-          <Title text={title} size={"0.8em"} path={id} />
+          <Title text={title} size={"0.8em"} path={id} short={2} />
           <Date d={date} />
         </div>
-        <Author src={authorImg.type} />
+        <Author>
+          <AuthorImg src={authorImg.type} alt={author} />
+        </Author>
       </CardBottom>
     </CardPostContainer>
   );
 };
 
 const CardPostContainer = styled.article`
-  margin-bottom: 2em;
-  border: 1px solid rgba(160, 160, 160, 0.3);
-  &:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
+  border: ${({ theme }) => theme.color.border};
+
+  @media ${({ theme }) => theme.device.desktop} {
+    width: 100%;
+  }
+
+  @media ${({ theme }) => theme.device.tablet} {
+    width: calc((100% - 2em) / 2);
+  }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+    margin-bottom: 2em;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 `;
 const CardTop = styled.div`
@@ -37,10 +53,19 @@ const CardTop = styled.div`
 `;
 
 const CardBottom = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 1em 1.5em;
-  padding-bottom: 1.9em;
+  ${({ theme }) => theme.flexBox.flex("row", "start", "space-between")}
   background-color: #fff;
+  padding: 1.5em;
+`;
+
+const Author = styled.div`
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+`;
+const AuthorImg = styled.img`
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 export default CardPost;

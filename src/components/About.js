@@ -13,7 +13,6 @@ const About = () => {
     </>
   );
 };
-const AboutContainer = styled.div``;
 const P = styled.p`
   margin-bottom: 2em;
   font-family: "Source Sans Pro", sans-serif;

@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
 * {
   padding: 0;
   margin: 0;
@@ -26,3 +29,6 @@ a {
 a:hover {
   color: #2ebaae !important;
 }
+`;
+
+export default GlobalStyle;

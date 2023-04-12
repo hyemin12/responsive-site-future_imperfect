@@ -12,12 +12,13 @@ export const SubtitleH4 = styled.h4`
   font-size: ${({ size }) => (size ? size : "0.7em")};
   font-weight: 400;
   letter-spacing: 0.2em;
+  line-height: 1.6;
   ${({ short }) =>
     short &&
     `display: -webkit-box;
 -webkit-line-clamp: ${short};
 -webkit-box-orient: vertical;
-overflow: hidden;`}
+overflow: hidden;`};
 `;
 
 export default SubTitle;

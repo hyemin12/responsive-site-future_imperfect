@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+
+import theme from "./styles/theme";
 
 import Title from "./Elements/Title";
 import SubTitle from "./Elements/SubTitle";
@@ -11,12 +14,11 @@ import TextLink from "./Elements/TextLink";
 import Img from "./Elements/Img";
 
 import { FaHeart, FaComment } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
 
 const MainPost = (post) => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";
-  console.log(isMainPage);
+
   const [isLike, setIsLike] = useState({
     likeCount: post.likeCount,
     mode: false,
@@ -44,11 +46,11 @@ const MainPost = (post) => {
   };
 
   return (
-    <PostContainer>
-      <TitleContainer>
-        <TitleWrapper>
+    <PostContainer theme={theme}>
+      <Header theme={theme}>
+        <TitleWrapper theme={theme}>
           <Title
-            type={"link"}
+            type={isMainPage ? "link" : "default"}
             text={title}
             size={"1.6em"}
             weight={900}
@@ -56,17 +58,23 @@ const MainPost = (post) => {
           />
           <SubTitle text={subtitle} />
         </TitleWrapper>
-        <InfoWrapper>
+
+        {/* 날짜, 작가 */}
+        <InfoWrapper theme={theme}>
           <Date d={date} type={"bold"} />
-          <Author type={"all"} name={author} src={authorImg.type} />
+          <Author
+            type={"all"}
+            name={author}
+            src={authorImg.type}
+            border={"left"}
+          />
         </InfoWrapper>
-      </TitleContainer>
-      <ImgWrapper>
+      </Header>
+      <ImgWrapper theme={theme}>
         <Img src={img.type} alt={title} path={id} />
       </ImgWrapper>
 
       {/* 본문 */}
-
       <TextWrapper textOverflow={textOverflow}>
         {isMainPage ? (
           <p>{text.split("\n")[0]}</p>
@@ -74,69 +82,99 @@ const MainPost = (post) => {
           text.split("\n").map((param, idx) => (
             <>
               <p key={idx}>{param}</p>
-              {idx !== text.split("\n").length - 1 ? <br /> : null}
+              {idx !== text.split("\n").length - 1 ? (
+                <br key={"br" - idx} />
+              ) : null}
             </>
           ))
         )}
       </TextWrapper>
 
-      <FooterContainer>
+      <FooterContainer theme={theme}>
         {isMainPage && <Button text={"continue reading"} path={id} />}
-
-        <Row>
+        <FooterRow theme={theme}>
           <TextLink
             text={tag}
             path="#"
             type="link"
             size={"0.65em"}
             padding={"0 2em 0 0"}
+            offset={3}
           />
           <FooterItem
             className={isLike.mode ? "active" : ""}
             onClick={toggleLikeMode}
+            theme={theme}
           >
             <Icon icon={<FaHeart />} />
             <p>{isLike.likeCount}</p>
           </FooterItem>
-          <FooterItem>
+          <FooterItem theme={theme}>
             <Icon icon={<FaComment />} />
             <p>{commentCount}</p>
           </FooterItem>
-        </Row>
+        </FooterRow>
       </FooterContainer>
     </PostContainer>
   );
 };
-const Row = styled.div`
-  display: flex;
-`;
 const PostContainer = styled.article`
+  width: 100%;
+  max-width: 1500px;
   background-color: #fff;
   padding: 3.6em 3em;
   margin-bottom: 2.2em;
-  border: 1px solid rgba(160, 160, 160, 0.3);
+  border: ${({ theme }) => theme.color.border};
+  overflow-x: hidden;
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
-const TitleContainer = styled(Row)`
+
+const Header = styled.div`
+  display: flex;
   width: calc(100% + 6em);
   margin-top: -3.6em;
   margin-left: -3em;
   margin-bottom: 1em;
   padding-top: 0;
-  border-bottom: 1px solid rgba(160, 160, 160, 0.3);
+  border-bottom: ${({ theme }) => theme.color.border};
+  @media ${({ theme }) => theme.device.tabletPortrait} {
+    display: block;
+    margin-bottom: 0;
+    padding: 3.6em 3em;
+    text-align: center;
+  }
 `;
+
 const TitleWrapper = styled.div`
   flex-grow: 1;
   padding: 3.6em 3em;
+  @media ${({ theme }) => theme.device.tabletPortrait} {
+    padding: 0;
+    margin-bottom: 2.4em;
+  }
 `;
-const InfoWrapper = styled(Row)`
-  align-items: end;
-  justify-content: center;
-  flex-direction: column;
-  gap: 0.67em;
-  width: 30%;
-  padding-right: 3em;
-  border-left: 1px solid rgba(160, 160, 160, 0.3);
+const InfoWrapper = styled.div`
+  ${({ theme }) => theme.flexBox.flex("column", "end", "center")}
   flex-shrink: 0;
+  gap: 0.67em;
+  padding: 3.6em 3em;
+  border-left: ${({ theme }) => theme.color.border};
+
+  // table 세로 스타일
+  @media ${({ theme }) => theme.device.tabletPortrait} {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    border-left: none;
+  }
+  // 모바일스타일
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
 `;
 const ImgWrapper = styled.div`
   display: flex;
@@ -144,12 +182,20 @@ const ImgWrapper = styled.div`
   margin: 3em 0;
   aspect-ratio: 841/341;
   overflow: hidden;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: calc(100% + 7em);
+    margin-top: 0;
+    margin-bottom: 2em;
+    margin-left: -3.5em;
+  }
 `;
 const TextWrapper = styled.div`
   width: 100%;
   margin-bottom: 2.4em;
   line-height: 1.8;
   font-family: "Source Sans Pro", "sans-serif";
+
+  // 본문 줄임
   ${({ textOverflow }) =>
     textOverflow &&
     `display: -webkit-box;
@@ -157,26 +203,31 @@ const TextWrapper = styled.div`
   -webkit-box-orient: vertical;
   overflow: hidden;`}
 `;
-const FooterContainer = styled(Row)`
-  align-items: center;
-  justify-content: space-between;
+const FooterContainer = styled.div`
+  ${({ theme }) => theme.flexBox.flex("row", "center", "space-between")}
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column-reverse;
+  }
 `;
-const FooterItem = styled(Row)`
-  align-items: center;
+const FooterRow = styled.div`
+  display: flex;
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-bottom: 2em;
+  }
+`;
+const FooterItem = styled.div`
+  ${({ theme }) => theme.flexBox.flex()}
   gap: 10px;
   font-size: 0.65em;
   padding: 0 2em;
-  border-left: 1px solid rgba(160, 160, 160, 0.3);
+  border-left: ${({ theme }) => theme.color.border};
   cursor: pointer;
   &:hover,
-  &:hover svg {
-    color: #2ebaae;
-    fill: #2ebaae;
-  }
+  &:hover svg,
   &.active,
   &.active svg {
-    color: #2ebaae;
-    fill: #2ebaae;
+    color: ${({ theme }) => theme.color.pointColor};
+    fill: ${({ theme }) => theme.color.pointColor};
   }
 `;
 

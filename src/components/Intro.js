@@ -3,10 +3,11 @@ import Logo from "./Elements/Logo";
 
 import TextLink from "./Elements/TextLink";
 import Title from "./Elements/Title";
+import theme from "./styles/theme";
 
 const Intro = () => {
   return (
-    <IntroContainer>
+    <IntroContainer theme={theme}>
       <Logo />
       <br />
       <Title
@@ -23,6 +24,7 @@ const Intro = () => {
           text={"HTML5 UP"}
           size={"0.8em"}
           padding={"0 1em"}
+          offset={3}
         />
       </div>
     </IntroContainer>
@@ -30,6 +32,8 @@ const Intro = () => {
 };
 const IntroContainer = styled.div`
   margin-bottom: 3em;
+  @media ${({ theme }) => theme.device.tablet} {
+    ${({ theme }) => theme.flexBox.flex("column", "center", "center")} 
 `;
 const P = styled.p`
   display: inline;

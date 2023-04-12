@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 const Title = ({ text, size, type, weight, lineHeight, path, short }) => {
   const location = useLocation();
+
   if (type === "link" || location.pathname === "/")
     return (
-      <Link to={`./post/:${path}`}>
+      <Link to={path ? `./post/${path}` : "/"}>
         <H1 size={size} weight={weight} lineHeight={lineHeight} short={short}>
           {text}
         </H1>

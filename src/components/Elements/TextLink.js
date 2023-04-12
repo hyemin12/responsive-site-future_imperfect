@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const TextLink = ({ text, type, path, size, padding }) => {
+import theme from "../styles/theme";
+
+const TextLink = ({ text, type, path, size, padding, offset }) => {
   if (type === "link")
     return (
       <LinkText
@@ -9,6 +11,8 @@ const TextLink = ({ text, type, path, size, padding }) => {
         onClick={(e) => e.preventDefault}
         size={size}
         padding={padding}
+        offset={offset}
+        theme={theme}
       >
         {text}
       </LinkText>
@@ -20,39 +24,34 @@ const TextLink = ({ text, type, path, size, padding }) => {
       onClick={(e) => e.preventDefault}
       size={size}
       padding={padding}
+      offset={offset}
+      theme={theme}
     >
       {text}
     </AText>
   );
 };
 
-export const LinkText = styled(Link)`
-  display: block;
-  ${({ padding }) => (padding ? `padding: ${padding}` : "0 2em")};
-  color: #646464;
-  font-size: ${({ size }) => (size ? size : "0.7em")};
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: underline dotted #aaa;
-  text-underline-offset: 5px;
-  transition: 0.4s;
-  &:hover {
-    color: #2ebaae;
-    text-decoration: none;
-  }
-`;
-export const AText = styled.a`
+export const style = css`
   ${({ padding }) => padding && `padding: ${padding}`};
   color: #646464;
   font-size: ${({ size }) => (size ? size : "0.7em")};
   letter-spacing: 0.2em;
   text-transform: uppercase;
   text-decoration: underline dotted #aaa;
-  text-underline-offset: 5px;
+  text-underline-offset: ${({ offset }) => offset}px;
   transition: 0.4s;
   &:hover {
-    color: #2ebaae;
+    color: ${({ theme }) => theme.color.pointColor};
     text-decoration: none;
   }
 `;
+
+const LinkText = styled(Link)`
+  ${style}
+`;
+const AText = styled.a`
+  ${style}
+`;
+
 export default TextLink;

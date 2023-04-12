@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
+import theme from "../styles/theme";
+
 import { FaComment } from "react-icons/fa";
 
 const CommentButton = ({ count }) => {
   return (
-    <Btn>
+    <Btn theme={theme}>
       <FaComment />
       {count}
     </Btn>
@@ -12,7 +14,7 @@ const CommentButton = ({ count }) => {
 };
 const Btn = styled.div`
   &:hover {
-    color: #2ebaae;
+    color: ${({ theme }) => theme.color.pointColor};
   }
 `;
 export default CommentButton;
