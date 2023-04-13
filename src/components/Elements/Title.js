@@ -5,7 +5,7 @@ const Title = ({ text, size, type, weight, lineHeight, path, short }) => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";
 
-  if (type === "link" || isMainPage)
+  if (type === "link")
     return (
       <Link to={isMainPage ? `./post/${path}` : `../post/${path}`}>
         <H1 size={size} weight={weight} lineHeight={lineHeight} short={short}>

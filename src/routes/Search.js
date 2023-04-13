@@ -25,27 +25,30 @@ const Search = () => {
       : result;
 
   return (
-    <Layout sidebar={"sidebar"}>
+    <Layout>
       {result && (
-        <>
+        <Container theme={theme}>
           <h2>
             {`${result.length} Search Result for  `}
             <Span theme={theme}>"{text ? text : param}"</Span>
           </h2>
 
-          <PostWrapper className="post-wrapper">
+          <section className="post-wrapper">
             {result.map((post) => (
               <SearchResPost key={post.id} {...post} />
             ))}
-          </PostWrapper>
-        </>
+          </section>
+        </Container>
       )}
     </Layout>
   );
 };
-
+const Container = styled.div`
+  background-color: #fff;
+  padding: 2.5em 3.5em;
+`;
 const Span = styled.span`
   color: ${({ theme }) => theme.color.pointColor};
 `;
-const PostWrapper = styled.div``;
+
 export default Search;

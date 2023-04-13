@@ -26,5 +26,6 @@ const IntroWrapper = styled.div`
   display: none;
   @media ${({ theme }) => theme.device.tablet} {
     display: block;
+    padding-top:55px;
 `;
 export default Home;

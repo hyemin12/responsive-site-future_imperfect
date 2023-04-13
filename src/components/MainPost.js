@@ -75,7 +75,7 @@ const MainPost = (post) => {
       </ImgWrapper>
 
       {/* 본문 */}
-      <TextWrapper textOverflow={textOverflow}>
+      <TextWrapper textOverflow={textOverflow} theme={theme}>
         {isMainPage ? (
           <p>{text.split("\n")[0]}</p>
         ) : (
@@ -123,11 +123,16 @@ const PostContainer = styled.article`
   max-width: 1500px;
   background-color: #fff;
   padding: 3.6em 3em;
+  margin: 0 auto;
   margin-bottom: 2.2em;
   border: ${({ theme }) => theme.color.border};
   overflow-x: hidden;
   &:last-child {
     margin-bottom: 0;
+  }
+  @media ${({ theme }) => theme.device.tabletPortrait} {
+    width: calc(100% + 7em);
+    margin-left: -3.5em;
   }
 `;
 

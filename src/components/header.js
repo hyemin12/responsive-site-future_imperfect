@@ -21,15 +21,16 @@ const Header = () => {
     if (e.target.id === "search-input" || e.target.id === "menu-icon") {
       return;
     }
-    console.log(e.target.id);
+
     setVisibleSearch(!visibleSearch);
   };
 
   return (
     <HeaderContainer theme={theme}>
       <Link to="/">
-        <H4>Future imperfect</H4>
+        <H4 theme={theme}>Future imperfect</H4>
       </Link>
+      {/* 메뉴 */}
       <NavContainer theme={theme}>
         {links.map((link) => (
           <NavItem
@@ -42,8 +43,14 @@ const Header = () => {
           </NavItem>
         ))}
       </NavContainer>
-      <IconWrapper theme={theme} onClick={toggleVisibleSearch}>
-        <SearchIcon theme={theme} visible={visibleSearch}>
+
+      {/* 아이콘 */}
+      <IconWrapper theme={theme}>
+        <SearchIcon
+          theme={theme}
+          visible={visibleSearch}
+          onClick={toggleVisibleSearch}
+        >
           <Icon icon={<FaSearch />} />
           <SearchInput icon={false} visible={visibleSearch} />
         </SearchIcon>
@@ -79,6 +86,10 @@ const H4 = styled.h4`
   font-size: 0.7em;
   letter-spacing: 0.3em;
   text-transform: uppercase;
+  transition: 0.4s;
+  &:hover {
+    color: ${({ theme }) => theme.color.pointColor};
+  }
 `;
 const NavContainer = styled.div`
   ${({ theme }) => theme.flexBox.flex()}

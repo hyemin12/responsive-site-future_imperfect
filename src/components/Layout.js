@@ -5,6 +5,7 @@ import theme from "./styles/theme";
 import Header from "./Header";
 import Menu from "./Menu";
 import SideBar from "./SideBar";
+import Footer from "./Footer";
 
 const Layout = ({ children, sidebar }) => {
   if (sidebar)
@@ -23,7 +24,10 @@ const Layout = ({ children, sidebar }) => {
   return (
     <>
       <Header />
-      <Main>{children}</Main>
+      <Main>
+        <MainWrapper>{children}</MainWrapper>
+      </Main>
+      <Footer />
       <Menu />
     </>
   );
@@ -55,4 +59,14 @@ const Main = styled.div`
   padding-top: 55px;
 `;
 
+const MainWrapper = styled.section`
+  padding: 3.5em 5em;
+
+  @media ${({ theme }) => theme.device.tablet} {
+    padding: 3.5em;
+  }
+  @media ${({ theme }) => theme.device.tabletPortrait} {
+    padding: 3.5em 0;
+  }
+`;
 export default Layout;
