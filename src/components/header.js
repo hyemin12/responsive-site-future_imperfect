@@ -18,17 +18,19 @@ const Header = () => {
   const [visibleSearch, setVisibleSearch] = useState(false);
 
   const toggleVisibleSearch = (e) => {
-    if (e.target.id === "search-input") {
+    if (e.target.id === "search-input" || e.target.id === "menu-icon") {
       return;
     }
+
     setVisibleSearch(!visibleSearch);
   };
 
   return (
     <HeaderContainer theme={theme}>
       <Link to="/">
-        <H4>Future imperfect</H4>
+        <H4 theme={theme}>Future imperfect</H4>
       </Link>
+      {/* 메뉴 */}
       <NavContainer theme={theme}>
         {links.map((link) => (
           <NavItem
@@ -41,12 +43,19 @@ const Header = () => {
           </NavItem>
         ))}
       </NavContainer>
-      <IconWrapper theme={theme} onClick={toggleVisibleSearch}>
-        <SearchIcon theme={theme} visible={visibleSearch}>
+
+      {/* 아이콘 */}
+      <IconWrapper theme={theme}>
+        <SearchIcon
+          theme={theme}
+          visible={visibleSearch}
+          onClick={toggleVisibleSearch}
+        >
           <Icon icon={<FaSearch />} />
           <SearchInput icon={false} visible={visibleSearch} />
         </SearchIcon>
         <IconItem
+          id="menu-icon"
           theme={theme}
           onClick={() => {
             setVisibleMenu(true);
@@ -59,7 +68,7 @@ const Header = () => {
   );
 };
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   ${({ theme }) => theme.flexBox.flex()}
   width: 100%;
   height: 56px;
@@ -77,6 +86,10 @@ const H4 = styled.h4`
   font-size: 0.7em;
   letter-spacing: 0.3em;
   text-transform: uppercase;
+  transition: 0.4s;
+  &:hover {
+    color: ${({ theme }) => theme.color.pointColor};
+  }
 `;
 const NavContainer = styled.div`
   ${({ theme }) => theme.flexBox.flex()}
@@ -105,7 +118,7 @@ const IconWrapper = styled.ul`
   position: relative;
 `;
 
-const IconItem = styled.li`
+const IconItem = styled.div`
   ${({ theme }) => theme.flexBox.flex("row", "center", "center")}
   width: 64px;
   height: 100%;
@@ -116,6 +129,7 @@ const IconItem = styled.li`
     border: none;
   }
 `;
+
 const SearchIcon = styled(IconItem)`
   transition: 0.4s;
   ${({ visible }) =>

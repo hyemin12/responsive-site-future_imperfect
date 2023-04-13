@@ -11,6 +11,7 @@ const Date = ({ d, type }) => {
 };
 
 const P = styled.p`
+  flex-shrink: 0;
   text-transform: uppercase;
   letter-spacing: 0.2em;
   ${({ type }) =>

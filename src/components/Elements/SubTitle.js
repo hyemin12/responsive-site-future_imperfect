@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const SubTitle = ({ text, size, short }) => {
   return (
-    <SubtitleH4 size={size} short={short}>
+    <H4 size={size} short={short}>
       {text}
-    </SubtitleH4>
+    </H4>
   );
 };
-export const SubtitleH4 = styled.h4`
+export const H4 = styled.h4`
   color: #646464;
   font-size: ${({ size }) => (size ? size : "0.7em")};
   font-weight: 400;
