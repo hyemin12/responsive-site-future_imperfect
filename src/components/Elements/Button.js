@@ -2,13 +2,19 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../styles/theme";
 
-const Button = ({ text, path, width }) => {
+const Button = ({ text, path, width, type }) => {
+  if (type === "link")
+    return (
+      <ButtonLink to={path ? `./post/${path}` : "#"} theme={theme}>
+        <Btn width={width} theme={theme}>
+          {text}
+        </Btn>
+      </ButtonLink>
+    );
   return (
-    <ButtonLink to={path ? `./post/${path}` : "#"} theme={theme}>
-      <Btn width={width} theme={theme}>
-        {text}
-      </Btn>
-    </ButtonLink>
+    <Btn width={width} theme={theme}>
+      {text}
+    </Btn>
   );
 };
 const ButtonLink = styled(Link)`

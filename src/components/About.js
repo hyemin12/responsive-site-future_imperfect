@@ -9,7 +9,7 @@ const About = () => {
         mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna
         enim, ac accumsan tortor cursus at phasellus sed ultricies.
       </P>
-      <Button text={"Learn More"} />
+      <Button text={"Learn More"} type={"link"} />
     </>
   );
 };

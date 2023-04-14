@@ -91,7 +91,9 @@ const MainPost = (post) => {
       </TextWrapper>
 
       <FooterContainer theme={theme}>
-        {isMainPage && <Button text={"continue reading"} path={id} />}
+        {isMainPage && (
+          <Button text={"continue reading"} path={id} type={"link"} />
+        )}
         <FooterRow theme={theme}>
           <TextLink
             text={tag}
