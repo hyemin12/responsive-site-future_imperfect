@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import theme from "../styles/theme";
 
-const Button = ({ text, path, width, type }) => {
+const Button = ({ text, path, width, type, func }) => {
   if (type === "link")
     return (
       <ButtonLink to={path ? `./post/${path}` : "#"} theme={theme}>
@@ -12,7 +12,7 @@ const Button = ({ text, path, width, type }) => {
       </ButtonLink>
     );
   return (
-    <Btn width={width} theme={theme}>
+    <Btn width={width} theme={theme} onClick={func && func}>
       {text}
     </Btn>
   );
@@ -23,7 +23,7 @@ const ButtonLink = styled(Link)`
     width: 100%;
   }
 `;
-const Btn = styled.button`
+export const BtnStyle = css`
   ${({ width }) => width && `width:${width}`};
   background-color: transparent;
   padding: 1.8em 2.1em;
@@ -43,5 +43,8 @@ const Btn = styled.button`
     display: block;
     width: 100%;
   }
+`;
+const Btn = styled.button`
+  ${BtnStyle}
 `;
 export default Button;
