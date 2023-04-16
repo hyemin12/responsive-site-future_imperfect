@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
+import { ThemeProvider } from "styled-components";
 import { MenuContextProvider } from "./hooks/menu_context";
 import { SearchContextProvider } from "./hooks/search_context";
-import { ThemeProvider } from "styled-components";
 
 import theme from "./components/styles/theme";
 import GlobalStyle from "./components/styles/GlobalStyle";
