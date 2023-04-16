@@ -7,7 +7,7 @@ import Search from "./routes/Search";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/post/:id" element={<Detail />} />
