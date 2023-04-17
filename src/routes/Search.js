@@ -14,7 +14,6 @@ const Search = () => {
   const { param } = useParams();
   const { searchResult } = useSearchContext();
   let { text, result } = searchResult;
-  console.log(searchResult);
 
   // 뒤로가기해서 해당 페이지에 들어와서 result 값이 없을 때 값 다시 가져오기
   result =

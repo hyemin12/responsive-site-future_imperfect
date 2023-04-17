@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 import theme from "./styles/theme";
@@ -70,4 +71,4 @@ const CardPostWrapper = styled(SectionWrapper)`
     display: block;
   }
 `;
-export default SideBar;
+export default React.memo(SideBar);

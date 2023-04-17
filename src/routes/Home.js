@@ -32,8 +32,6 @@ const Home = () => {
     setPosts(sortedPosts.slice(currentPage * limit, (currentPage + 1) * limit));
   }, [currentPage]);
 
-  console.log(posts, currentPage, totalPage);
-
   return (
     <Layout sidebar={"sidebar"}>
       <IntroWrapper theme={theme}>
