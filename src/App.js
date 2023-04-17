@@ -7,11 +7,11 @@ import Search from "./routes/Search";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter basename="">
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/post/:id" element={<Detail />} />
-          <Route path="/search/:param" element={<Search />} />
+          <Route path="./" element={<Home />} />
+          <Route path="./post/:id" element={<Detail />} />
+          <Route path="./search/:param" element={<Search />} />
         </Routes>
       </BrowserRouter>
     </div>
